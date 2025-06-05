@@ -1,0 +1,21 @@
+/* QUI C'è CODICE DELLO SFONDO DELLA HOME PAGE  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(circle, #1a1a2e, #000);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+  }
+
+ 
+
+  
