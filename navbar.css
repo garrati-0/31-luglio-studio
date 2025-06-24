@@ -10,12 +10,7 @@
 
 /* Stili di base */
 html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    /* Assicurati che il tuo body abbia il colore di sfondo corretto */
-    background-color: #23140C; 
-}
+
 
 /* Navigazione Desktop */
 .desk-nav {
@@ -31,7 +26,7 @@ html, body {
 
 /* Navigazione Desktop quando si scorre la pagina */
 .desk-nav.scrolled {
-    background-color: #23140C; /* Diventa opaca con il colore di sfondo */
+    background-color: #000; /* Diventa opaca con il colore di sfondo */
     /* Usiamo un bordo inferiore beige/trasparente invece di un'ombra, più elegante */
     border-bottom: 1px solid rgba(208, 186, 152, 0.2); 
 }

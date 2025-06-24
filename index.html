@@ -13,13 +13,13 @@
     <style>
         /* ========================================
         IMPOSTAZIONI GLOBALI E STILI DI BASE
-        PALETTE: #D0BA98, #23140C, #91040C
+        PALETTE: #D0BA98, #23140C, #91040C  #3D1020
         ========================================
         */
         :root {
-            --background-color: #23140C; /* Marrone Scuro */
-            --text-color: #D0BA98;       /* Beige/Sabbia */
-            --accent-color: #91040C;     /* Rosso Scuro/Borgogna */
+            --background-color: #000; /* Marrone Scuro */
+            --text-color:rgb(82, 2, 6);       /* Beige/Sabbia */
+            --accent-color: #30225F;     /* Rosso Scuro/Borgogna */
             --font-display: 'Anton', sans-serif;
             --font-body: 'Montserrat', sans-serif;
         }
@@ -31,7 +31,7 @@
         }
 
         body {
-            background-color: var(--background-color);
+            background-color: #000;
             color: var(--text-color);
             font-family: var(--font-body);
             overflow-x: hidden;
@@ -59,7 +59,7 @@ body::after {
   animation: grain 8s steps(10) infinite;
 }
         a {
-            color: var(--accent-color);
+            color: #000;
             text-decoration: none;
             font-weight: bold;
         }
@@ -98,7 +98,7 @@ body::after {
         }
 
         .nav-links a:hover {
-            color: var(--accent-color);
+            color: #000;
         }
 
         /* ========================================
@@ -148,7 +148,7 @@ body::after {
             justify-content: space-between;
             align-items: flex-end;
             gap: 2rem;
-            background: linear-gradient(to top, rgba(35, 20, 12, 0.7), transparent); /* Sfumatura per leggibilità */
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); /* Sfumatura per leggibilità */
         }
 
         .poster-column {
@@ -310,6 +310,7 @@ body::after {
             font-size: 0.9rem;
             color: rgba(208, 186, 152, 0.5);
         }
+        
 
         /* NUOVO: Keyframes per l'animazione del rumore */
 @keyframes grain {
@@ -333,7 +334,7 @@ body::after {
       
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#about">Chi siamo</a></li>
+        <li><a href="chi_siamo.html">Chi siamo</a></li>
         <li><a href="#services">Servizi</a></li>
         <li><a href="#contact">Contatti</a></li>
       </ul>
@@ -351,7 +352,7 @@ body::after {
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#about">Chi siamo</a></li>
+        <li><a href="chi_siamo.html">Chi siamo</a></li>
         <li><a href="#services">Servizi</a></li>
         <li><a href="#contact">Contatti</a></li>
       </ul>
