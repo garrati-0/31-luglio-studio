@@ -39,22 +39,24 @@
         
  /* NUOVO: Effetto rumore vintage animato */
 body::after {
-    content: "";
-    position: fixed;
-    /* Facciamo il layer più grande dello schermo per non vedere i bordi durante l'animazione */
-    width: 300vw;
-    height: 300vh;
-    top: -100vh;
-    left: -100vw;
+  content: "";
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
 
-    pointer-events: none; /* Per poter cliccare attraverso */
-    z-index: 100;
+  width: 300vw;
+  height: 300vh;
+  top: -100vh;
+  left: -100vw;
+  
+  /* Usiamo un SVG generato al posto dell'immagine */
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+  
+  /* Regoliamo l'opacità per un effetto più sottile */
+  opacity: 0.10;
 
-    /* Immagine di sfondo con una grana più adatta */
-  background: url('https://raw.githubusercontent.com/leslienk/leslie-noise/master/noise.png');
-
-    /* L'animazione che fa "vibrare" il rumore */
-    animation: grain 8s steps(10) infinite;
+  /* La stessa animazione di prima */
+  animation: grain 8s steps(10) infinite;
 }
         a {
             color: var(--accent-color);
