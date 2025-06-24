@@ -1,0 +1,451 @@
+:root {
+  --verde: #387B66;
+  --sabbia: #FFCB82;
+  --marrone: #381E05;
+}
+
+body {
+  margin: 0;
+  background-color: var(--verde);
+  font-family: 'Inter', sans-serif;
+  color: var(--sabbia);
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.text-layer {
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+h1, h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8vw;
+  margin: 0;
+  letter-spacing: 0.05em;
+  color: var(--sabbia);
+}
+
+.subtitle {
+  font-size: 1.5vw;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sabbia);
+}
+
+.subtitle i {
+  margin-right: 0.5em;
+  font-size: 1.2em;
+}
+
+section {
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+section h3 {
+  font-size: 2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  color: var(--sabbia);
+  margin-bottom: 1rem;
+  border-left: 6px solid var(--sabbia);
+  padding-left: 1rem;
+}
+
+section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #f9f3e7;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.service {
+  background-color: var(--marrone);
+  padding: 1.5rem;
+  border-radius: 10px;
+  color: var(--sabbia);
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.service i {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+  color: white;
+}
+
+/* Desktop Navigation Styles */
+.desk-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  padding: 15px 0;
+}
+
+.desk-nav.scrolled {
+  background-color: var(--marrone);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--sabbia);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+  color: white;
+}
+
+.desk-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.desk-nav ul li {
+  position: relative;
+  margin: 0 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.desk-nav ul li a {
+  text-decoration: none;
+  color: var(--sabbia);
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.desk-nav ul li a:hover {
+  color: white;
+}
+
+.desk-nav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--sabbia);
+  transition: width 0.3s ease;
+}
+
+.desk-nav ul li a:hover::after {
+  width: 100%;
+}
+
+.theme-toggle {
+  background: none;
+  border: 2px solid var(--sabbia);
+  color: var(--sabbia);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+  background-color: var(--sabbia);
+  color: var(--marrone);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle i {
+  font-size: 1rem;
+}
+
+/* Hamburger Menu Button Styles */
+.button-container {
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  overflow: visible;
+  z-index: 1007;
+  cursor: pointer;
+  display: none;
+  background-color: var(--marrone);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.button-container:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button-container span {
+  width: 24px;
+  height: 2px;
+  background: var(--sabbia);
+  position: absolute;
+  left: 18px;
+  transition: all .5s ease;
+}
+
+.button-container span:nth-of-type(1) {
+  top: 26px;
+}
+
+.button-container span:nth-of-type(2) {
+  top: 30px;
+}
+
+.button-container span:nth-of-type(3) {
+  top: 34px;
+}
+
+.button-container.active span:nth-of-type(1) {
+  transform: translate(0, 4px) rotate(45deg);
+}
+
+.button-container.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.button-container.active span:nth-of-type(3) {
+  transform: translate(0, -4px) rotate(-45deg);
+}
+
+/* Overlay Menu Styles (for mobile) */
+.overlay {
+  position: fixed;
+  background: var(--verde);
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity .35s, visibility .35s;
+  z-index: 1002;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlay nav {
+  position: relative;
+  height: 70%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-align: center;
+}
+
+.overlay ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.overlay ul li {
+  display: block;
+  height: 20%;
+  min-height: 50px;
+  position: relative;
+  opacity: 0;
+  transform: scale(.5);
+  transition: all .3s ease;
+}
+
+.overlay.open ul li {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: calc(0.1s * var(--delay));
+}
+
+.overlay ul li:nth-child(1) { --delay: 1; }
+.overlay ul li:nth-child(2) { --delay: 2; }
+.overlay ul li:nth-child(3) { --delay: 3; }
+.overlay ul li:nth-child(4) { --delay: 4; }
+.overlay ul li:nth-child(5) { --delay: 5; }
+
+.overlay ul li a {
+  display: block;
+  position: relative;
+  color: var(--sabbia);
+  text-decoration: none;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+}
+
+.overlay ul li a:hover {
+  color: white;
+  background-color: var(--marrone);
+}
+
+.mobile-theme-toggle {
+  margin-top: 2rem;
+}
+
+.mobile-theme-toggle .theme-toggle {
+  margin: 0;
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 1000px) {
+  .desk-nav {
+    display: none;
+  }
+  .button-container {
+    display: block;
+  }
+  
+  h1, h2 {
+    font-size: 12vw;
+  }
+  
+  .subtitle {
+    font-size: 3vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .subtitle {
+    font-size: 4vw;
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+  }
+}
+
+footer {
+  background-color: var(--marrone);
+  color: var(--sabbia);
+  padding: 40px 20px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo h4 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-social a {
+  color: #ccc;
+  margin-right: 15px;
+  font-size: 1.2em;
+  transition: color 0.3s;
+}
+
+.footer-social a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #777;
+}
