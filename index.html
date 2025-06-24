@@ -1,27 +1,341 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>31 LUGLIO STUDIO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>31 LUGLIO STUDIO - Home</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="navbar.css">
+
+    <style>
+        /* ========================================
+        IMPOSTAZIONI GLOBALI E STILI DI BASE
+        PALETTE: #D0BA98, #23140C, #91040C
+        ========================================
+        */
+        :root {
+            --background-color: #23140C; /* Marrone Scuro */
+            --text-color: #D0BA98;       /* Beige/Sabbia */
+            --accent-color: #91040C;     /* Rosso Scuro/Borgogna */
+            --font-display: 'Anton', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
+        
+ /* NUOVO: Effetto rumore vintage animato */
+body::after {
+    content: "";
+    position: fixed;
+    /* Facciamo il layer più grande dello schermo per non vedere i bordi durante l'animazione */
+    width: 300vw;
+    height: 300vh;
+    top: -100vh;
+    left: -100vw;
+
+    pointer-events: none; /* Per poter cliccare attraverso */
+    z-index: 100;
+
+    /* Immagine di sfondo con una grana più adatta */
+  background: url('https://raw.githubusercontent.com/leslienk/leslie-noise/master/noise.png');
+
+    /* L'animazione che fa "vibrare" il rumore */
+    animation: grain 8s steps(10) infinite;
+}
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* ========================================
+        NAVIGAZIONE
+        ========================================
+        */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: absolute; /* Sovrapposta all'hero */
+            width: 100%;
+            z-index: 10;
+        }
+
+        .navbar .logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: var(--text-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* ========================================
+        SEZIONE HERO (STILE POSTER)
+        ========================================
+        */
+        .hero {
+            height: 100vh; /* Altezza a tutto schermo */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative; /* Per posizionare gli elementi del footer */
+        }
+
+        .hero-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 20vw, 18rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin: 0;
+        }
+        
+        .hero .tagline {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-top: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* NUOVO: Footer stile poster */
+        .poster-details {
+            width: 100%;
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 2rem;
+            background: linear-gradient(to top, rgba(35, 20, 12, 0.7), transparent); /* Sfumatura per leggibilità */
+        }
+
+        .poster-column {
+            flex: 1;
+            text-align: left;
+        }
+        .poster-column.center {
+            text-align: center;
+        }
+        .poster-column.right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .poster-column h3 {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        .poster-column p {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+
+        .rating-box {
+            border: 2px solid var(--text-color);
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .rating-letter {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        
+        .rating-text {
+            font-size: 0.6rem;
+            text-align: left;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        
+        /* ========================================
+        SEZIONE ABOUT / "FEATURES"
+        ========================================
+        */
+        .feature-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            align-items: center;
+            padding: 10rem 5%;
+            gap: 2rem;
+        }
+        
+        .feature-text h2 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 500px;
+        }
+        
+        .vertical-text-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .vertical-text {
+            font-family: var(--font-display);
+            font-size: clamp(5rem, 18vw, 15rem);
+            color: rgba(208, 186, 152, 0.1); 
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-transform: uppercase;
+            line-height: 0.8;
+        }
+
+        /* ========================================
+        SEZIONE CALL TO ACTION (CTA)
+        ========================================
+        */
+        .cta-section {
+            padding: 10rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 12vw, 10rem);
+            text-transform: uppercase;
+            color: var(--accent-color);
+            transform: rotate(-4deg);
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-section h2:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            color: var(--background-color);
+        }
+        
+        /* ========================================
+        FOOTER
+        ========================================
+        */
+        .footer {
+            text-align: center;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(208, 186, 152, 0.1);
+        }
+
+        .footer .social-links a {
+             margin: 0 1rem;
+             color: var(--text-color);
+             font-weight: normal;
+        }
+        
+        .footer .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .footer p {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: rgba(208, 186, 152, 0.5);
+        }
+
+        /* NUOVO: Keyframes per l'animazione del rumore */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+    </style>
 </head>
 <body>
-  <div class="desk-nav">
+<div class="desk-nav">
     <div class="nav-container">
-      <a href="#" class="nav-logo">31 LUGLIO STUDIO</a>
+      
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#about">Chi siamo</a></li>
         <li><a href="#services">Servizi</a></li>
         <li><a href="#contact">Contatti</a></li>
       </ul>
-      <button class="theme-toggle" id="toggleTheme">
-        <i class="fas fa-palette"></i>
-        Tema
-      </button>
+      
     </div>
   </div>
 
@@ -48,75 +362,58 @@
     </nav>
   </div>
 
-  <div class="hero" id="home">
-    <canvas id="arrows"></canvas>
-    <div class="text-layer">
-      <h1>31 LUGLIO</h1>
-      <h2>STUDIO</h2>
-      <div class="subtitle">
-        <i class="fas fa-waveform"></i>
-        Inspiration is unlimited
-      </div>
-    </div>
-  </div>
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>31 LUGLIO<br>STUDIO</h1>
+                <p class="tagline">Soundscapes Redefined</p>
+            </div>
+            
+            <div class="poster-details">
+                <div class="poster-column left">
+                    <h3>Artisti</h3>
+                    <p>Nome1 Cognome1 • Nome1 Cognome1i<br>Nome1 Cognome1 • Nome1 Cognome1</p>
+                </div>
+                <div class="poster-column center">
+                    <h3>31 LUGLIO STUDIO</h3>
+                    <p>Est. 2025 • Monteroni, Italia</p>
+                </div>
+                <div class="poster-column right">
+                    <p>PROGETTI SONORI DI<br>Nome1 Cognome1 • Nome1 Cognome1</p>
+                    <div class="rating-box">
+                        <span class="rating-letter">S</span>
+                        <span class="rating-text">Sound Quality<br>Guaranteed</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <section id="about">
-    <h3>Chi siamo</h3>
-    <p>
-      31 Luglio Studio è uno spazio creativo dedicato alla musica, al design e all'arte visiva. 
-      Crediamo nella forza delle idee, nella bellezza dei dettagli e nella sinergia tra tecnica e ispirazione.
-      Ogni progetto che affrontiamo è un'opportunità per esprimere l'unicità di chi ci sceglie.
-    </p>
-  </section>
+        <section class="feature-section" id="studio">
+            <div class="feature-text">
+                <h2>Il Tuo Suono, Amplificato.</h2>
+                <p>Al 31 LUGLIO STUDIO, uniamo la passione per il suono vintage con le tecnologie più avanzate. Ogni progetto è un'opera d'arte. Dalla pre-produzione al mastering finale, il nostro team è dedicato a trasformare la tua visione in una realtà sonora impeccabile.</p>
+            </div>
+            <div class="vertical-text-container">
+                <div class="vertical-text">VIBES</div>
+            </div>
+        </section>
 
- <section id="works">
-  <h3>I nostri lavori</h3>
-  <div class="works-gallery">
-    <div class="work-item">
-      <img src="immagini/progetto1.jpg" alt="Progetto 1">
-      <h4>Progetto Audio Branding</h4>
-      <p>Identità sonora realizzata per un marchio emergente nel settore moda. Musica originale e sound design personalizzato.</p>
-    </div>
-    <div class="work-item">
-      <img src="immagini/progetto2.jpg" alt="Progetto 2">
-      <h4>Visual Art & Design</h4>
-      <p>Poster illustrato per un festival indipendente. Combinazione di elementi grafici analogici e digitali.</p>
-    </div>
-    <div class="work-item">
-      <img src="immagini/progetto3.jpg" alt="Progetto 3">
-      <h4>Produzione Musicale</h4>
-      <p>Composizione, arrangiamento e mix per un artista emergente. Sonorità elettroniche e atmosfere cinematiche.</p>
-    </div>
-  </div>
-</section>
-<footer>
-  <div class="footer-container">
-    <div class="footer-logo">
-      <h4>31 LUGLIO STUDIO</h4>
-      <p>Creatività in musica, design e arte visiva.</p>
-    </div>
-    <div class="footer-links">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">Chi siamo</a></li>
-        <li><a href="#services">Servizi</a></li>
-        <li><a href="#works">Lavori</a></li>
-        <li><a href="#contact">Contatti</a></li>
-      </ul>
-    </div>
-    <div class="footer-social">
-      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="mailto:info@31lugliostudio.com"><i class="fas fa-envelope"></i></a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2025 31 Luglio Studio. Tutti i diritti riservati.</p>
-  </div>
-</footer>
+        <section class="cta-section" id="contatti">
+            <h2>Prenota una sessione</h2>
+            <br>
+            <a href="#" class="cta-button">Inizia il tuo progetto</a>
+        </section>
+    </main>
 
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="script.js"></script>
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Spotify</a>
+            <a href="#">Soundcloud</a>
+        </div>
+        <p>&copy; 2025 31 LUGLIO STUDIO. Tutti i diritti riservati.</p>
+    </footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="navbar.js"></script>
 </body>
 </html>

@@ -1,0 +1,213 @@
+/* ===================================================================
+    CSS DELLA NAVIGAZIONE
+    (Rivisto per coerenza con il design '31 LUGLIO STUDIO')
+   ===================================================================
+   Colori usati:
+   --background-color: #23140C; (Marrone Scuro)
+   --text-color: #D0BA98;       (Beige/Sabbia)
+   --accent-color: #91040C;     (Rosso Scuro/Borgogna)
+*/
+
+/* Stili di base */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    /* Assicurati che il tuo body abbia il colore di sfondo corretto */
+    background-color: #23140C; 
+}
+
+/* Navigazione Desktop */
+.desk-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent; /* Sfondo trasparente di default */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    padding: 10px 0;
+    border-bottom: 1px solid transparent; /* Bordo per l'effetto allo scroll */
+}
+
+/* Navigazione Desktop quando si scorre la pagina */
+.desk-nav.scrolled {
+    background-color: #23140C; /* Diventa opaca con il colore di sfondo */
+    /* Usiamo un bordo inferiore beige/trasparente invece di un'ombra, più elegante */
+    border-bottom: 1px solid rgba(208, 186, 152, 0.2); 
+}
+
+.desk-nav ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.desk-nav ul li {
+    position: relative;
+    list-style-type: none;
+    display: inline-block;
+    margin: 20px;
+    font-family: "Montserrat";
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 3px; /* Leggermente ridotto per un look più pulito */
+    overflow: hidden;
+    transition: all .3s ease;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.desk-nav ul li a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #D0BA98; /* Colore testo coerente con il design */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Non serve più cambiare colore del link allo scroll, è sempre leggibile */
+
+.link-hover {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #91040C; /* Colore d'accento del design */
+    bottom: 0;
+    left: 0;
+    transform: translate(-101%, 0);
+    transition: all .3s ease;
+    z-index: -1;
+}
+
+.desk-nav ul li:hover .link-hover {
+    transform: translate(0, 0);
+}
+
+/* Pulsante Hamburger Menu (per mobile) */
+.button-container {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    overflow: visible;
+    z-index: 1007;
+    cursor: pointer;
+    display: none; /* Nascosto di default, visibile con media query */
+}
+
+.button-container span {
+    width: 24px;
+    height: 2px;
+    background: #D0BA98; /* Colore testo coerente */
+    position: absolute;
+    left: 18px;
+    transition: all .5s ease;
+}
+
+.button-container span:nth-of-type(1) {
+    top: 26px;
+}
+
+.button-container span:nth-of-type(2) {
+    top: 30px;
+}
+
+.button-container span:nth-of-type(3) {
+    top: 34px;
+}
+
+/* Stato attivo del pulsante (la 'X') */
+.button-container.active span:nth-of-type(1) {
+    transform: translate(0, 4px) rotate(45deg);
+}
+
+.button-container.active span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.button-container.active span:nth-of-type(3) {
+    transform: translate(0, -4px) rotate(-45deg);
+}
+
+/* Overlay Menu (per mobile) */
+.overlay {
+    position: fixed;
+    /* Sfondo scuro e semi-trasparente, coerente con il design */
+    background: rgba(35, 20, 12, 0.98); 
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity .35s, visibility .35s;
+    z-index: 1002;
+}
+
+.overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.overlay nav {
+    position: relative;
+    height: 70%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+    font-family: 'Montserrat', serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    text-align: center;
+}
+
+.overlay ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.overlay ul li {
+    display: block;
+    height: 25%;
+    min-height: 50px;
+    position: relative;
+    opacity: 0;
+    transform: scale(.5);
+    transition: all .3s ease;
+}
+
+.overlay.open ul li {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: .1s;
+}
+
+.overlay ul li a {
+    display: block;
+    position: relative;
+    color: #D0BA98; /* Colore testo coerente */
+    text-decoration: none;
+    overflow: hidden;
+    transition: color .3s ease;
+}
+
+.overlay ul li a:hover {
+    color: #91040C; /* Effetto hover con colore d'accento */
+}
+    
+/* Media Query per la responsività */
+@media (max-width: 1000px) {
+    .desk-nav {
+        display: none;
+    }
+    .button-container {
+        display: block;
+    }
+}
