@@ -1,0 +1,72 @@
+/* ===================================================================
+   CSS DELLA NAVIGAZIONE (DESKTOP E MOBILE)
+   =================================================================== */
+.desk-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+    padding: 10px 0;
+    border-bottom: 1px solid transparent;
+}
+.desk-nav.scrolled {
+    background-color: rgba(20, 10, 25, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(232, 225, 215, 0.1);
+    will-change: backdrop-filter;
+}
+.desk-nav ul { margin: 0; padding: 0; text-align: center; }
+.desk-nav ul li { list-style-type: none; display: inline-block; margin: 20px; font-family: var(--font-body); font-size: 15px; text-transform: uppercase; letter-spacing: 3px; }
+.desk-nav ul li a { color: var(--text-color); transition: color 0.3s ease; }
+.desk-nav ul li a:hover { color: var(--second-text-color); }
+
+.button-container {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1007;
+    cursor: pointer;
+    display: none;
+}
+.button-container span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-color);
+    position: absolute;
+    left: 18px;
+    transition: all .5s ease;
+}
+.button-container span:nth-of-type(1) { top: 26px; }
+.button-container span:nth-of-type(2) { top: 30px; }
+.button-container span:nth-of-type(3) { top: 34px; }
+.button-container.active span:nth-of-type(1) { transform: translate(0, 4px) rotate(45deg); }
+.button-container.active span:nth-of-type(2) { opacity: 0; }
+.button-container.active span:nth-of-type(3) { transform: translate(0, -4px) rotate(-45deg); }
+
+.overlay {
+    position: fixed;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity .35s, visibility .35s;
+    z-index: 1002;
+    background-color: rgba(20, 10, 25, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    will-change: opacity, backdrop-filter;
+}
+.overlay.open { opacity: 1; visibility: visible; }
+.overlay nav { position: relative; height: 70%; top: 50%; transform: translateY(-50%); font-size: 26px; font-family: var(--font-display); text-transform: uppercase; text-align: center; }
+.overlay ul { list-style: none; padding: 0; margin: 0 auto; display: inline-block; position: relative; height: 100%; width: 100%; }
+.overlay ul li { display: block; height: 25%; min-height: 50px; position: relative; opacity: 0; }
+.overlay.open ul li { opacity: 1; transition: all .4s ease .1s; }
+.overlay ul li a { display: block; position: relative; color: var(--text-color); text-decoration: none; }
+.overlay ul li a:hover { color: var(--second-text-color); }

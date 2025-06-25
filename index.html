@@ -7,238 +7,251 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* ========================================
-           IMPOSTAZIONI GLOBALI E STILI DI BASE
-           ======================================== */
-        :root {
-            --second-text-color: rgb(210, 150, 152);
-            --text-color: #E8E1D7;
-            --accent-color: #c4b09d;
-            --font-display: 'Anton', sans-serif;
-            --font-body: 'Montserrat', sans-serif;
+        /* Stili per le introduzioni */
+        .merch-intro, .projects-intro {
+            text-align: center;
+            padding: 80px 20px 0;
+            color: #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .merch-intro h2, .projects-intro h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 3em;
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-bottom: 10px;
         }
 
-        /* Keyframes per l'animazione dello sfondo */
-        @keyframes moveGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .merch-intro p, .projects-intro p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+            line-height: 1.6;
         }
 
-        /* Keyframes per l'animazione della grana */
-        @keyframes grain {
-            0%, 100% { transform: translate(0, 0); }
-            10% { transform: translate(-5%, -10%); }
-            20% { transform: translate(-15%, 5%); }
-            30% { transform: translate(7%, -25%); }
-            40% { transform: translate(-5%, 25%); }
-            50% { transform: translate(-15%, 10%); }
-            60% { transform: translate(15%, 0%); }
-            70% { transform: translate(0%, 15%); }
-            80% { transform: translate(3%, 35%); }
-            90% { transform: translate(-10%, 10%); }
+        /* --- NUOVA SEZIONE PROGETTI (Design 3.0) --- */
+        .projects-section {
+            padding: 40px 20px 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
-        body {
-            background: linear-gradient(-45deg, #c800a0, #4f008c, #000000, #4f008c);
-            background-size: 400% 400%;
-            animation: moveGradient 20s ease infinite;
-            color: var(--text-color);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            position: relative; /* Necessario per posizionare gli overlay */
-            will-change: background-position;
-        }
-
-        /* Overlay per l'effetto granulare vintage */
-        body::before {
-            content: "";
-            position: fixed;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.25' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            opacity: 0.15;
-            z-index: -1;
-            animation: grain 8s steps(10) infinite;
-            pointer-events: none;
-            will-change: transform;
-        }
-
-        /* ==========================================================
-           STILI PER GRAFFI CAOTICI E VARI (SVG)
-           ========================================================== */
-        @keyframes flicker {
-            0%, 12%, 100% { opacity: 0; }
-            1% { opacity: 0.6; }
-            3% { opacity: 0.4; }
-            5% { opacity: 0.7; }
-            7% { opacity: 0.2; }
-            10% { opacity: 0.5; }
-        }
-
-        @keyframes move-and-fade {
-            0%, 100% { opacity: 0; transform: translateX(0); }
-            3% { opacity: 0.5; transform: translateX(-15px); }
-            8% { opacity: 0.6; transform: translateX(10px); }
-            15% { opacity: 0; transform: translateX(0); }
-        }
-
-        .scratches-overlay {
-            position: fixed;
-            top: -5%;
-            left: -5%;
-            width: 110%;
-            height: 110%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .scratch-line {
-            fill: none;
-            stroke: rgba(232, 225, 215, 0.65);
-            stroke-width: 1.5px;
-            opacity: 0;
-            will-change: transform, opacity;
-        }
-
-        .s1 { animation: flicker 13s infinite -8s; }
-        .s2 { animation: flicker 8s infinite -2s; stroke-width: 1px; }
-        .s3 { animation: move-and-fade 10s infinite -5s; }
-        .s4 { animation: flicker 15s infinite -11s; stroke-width: 2.5px; }
-        .s5 { animation: move-and-fade 7s infinite -1s; }
-        .s6 { animation: flicker 12s infinite -3s; stroke-width: 1px; }
-        .s7 { animation: flicker 9s infinite -6s; }
-        .s8 { animation: move-and-fade 11s infinite -9s; stroke-width: 2px; }
-        .s9 { animation: flicker 14s infinite -4s; }
-
-        a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* ========================================
-           STILI SPECIFICI DELLA HOME PAGE
-           ======================================== */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
-        .hero-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; }
-        .hero-logo { width: 100%; max-width: 700px; height: auto; display: block; }
-        .tagline { font-size: clamp(1rem, 2vw, 1.5rem); margin-top: 1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--second-text-color); }
-        .hero-buttons { margin-top: 3rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-        .hero-button { display: inline-block; padding: 0.9rem 2rem; min-width: 280px; border: 2px solid var(--text-color); text-transform: uppercase; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; transition: all 0.3s ease; }
-        .hero-button.primary { background-color: var(--text-color); color: #23140C; }
-        .hero-button.primary:hover { background-color: transparent; color: var(--text-color); }
-        .hero-button.secondary { background-color: transparent; color: var(--text-color); }
-        .hero-button.secondary:hover { background-color: var(--text-color); color: #23140C; }
-        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 4px; color: rgba(232, 225, 215, 0.6); }
-        .footer { text-align: center; padding: 4rem 5% 2rem; border-top: 1px solid rgba(208, 186, 152, 0.1); }
-        .footer .social-links a { margin: 0 1rem; color: var(--text-color); font-weight: normal; }
-        .footer .social-links a:hover { color: var(--accent-color); }
-        .footer p { margin-top: 2rem; font-size: 0.9rem; color: rgba(208, 186, 152, 0.5); }
-
-        /* ===================================================================
-           CSS DELLA NAVIGAZIONE (DESKTOP E MOBILE)
-           =================================================================== */
-        .desk-nav {
-            position: fixed;
-            top: 0;
+        .project-card {
             width: 100%;
-            z-index: 1000;
-            background-color: transparent;
-            transition: background-color 0.4s ease, border-color 0.4s ease;
-            padding: 10px 0;
-            border-bottom: 1px solid transparent;
-        }
-        .desk-nav.scrolled {
-            background-color: rgba(20, 10, 25, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(232, 225, 215, 0.1);
-            will-change: backdrop-filter;
-        }
-        .desk-nav ul { margin: 0; padding: 0; text-align: center; }
-        .desk-nav ul li { list-style-type: none; display: inline-block; margin: 20px; font-family: var(--font-body); font-size: 15px; text-transform: uppercase; letter-spacing: 3px; }
-        .desk-nav ul li a { color: var(--text-color); transition: color 0.3s ease; }
-        .desk-nav ul li a:hover { color: var(--second-text-color); }
-
-        .button-container {
-            width: 60px;
-            height: 60px;
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 1007;
-            cursor: pointer;
-            display: none;
-        }
-        .button-container span {
-            width: 24px;
-            height: 2px;
-            background: var(--text-color);
-            position: absolute;
-            left: 18px;
-            transition: all .5s ease;
-        }
-        .button-container span:nth-of-type(1) { top: 26px; }
-        .button-container span:nth-of-type(2) { top: 30px; }
-        .button-container span:nth-of-type(3) { top: 34px; }
-        .button-container.active span:nth-of-type(1) { transform: translate(0, 4px) rotate(45deg); }
-        .button-container.active span:nth-of-type(2) { opacity: 0; }
-        .button-container.active span:nth-of-type(3) { transform: translate(0, -4px) rotate(-45deg); }
-
-        .overlay {
-            position: fixed;
-            visibility: hidden;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            transition: opacity .35s, visibility .35s;
-            z-index: 1002;
-            background-color: rgba(20, 10, 25, 0.8);
+            max-width: 650px; /* Larghezza massima della card */
+            height: 100px; /* Altezza fissa della card */
+            display: flex;
+            align-items: center;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            will-change: opacity, backdrop-filter;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            padding: 0; /* Rimuove il padding interno */
+            overflow: hidden; /* Necessario per i bordi arrotondati della copertina */
+            transition: background 0.3s ease;
         }
-        .overlay.open { opacity: 1; visibility: visible; }
-        .overlay nav { position: relative; height: 70%; top: 50%; transform: translateY(-50%); font-size: 26px; font-family: var(--font-display); text-transform: uppercase; text-align: center; }
-        .overlay ul { list-style: none; padding: 0; margin: 0 auto; display: inline-block; position: relative; height: 100%; width: 100%; }
-        .overlay ul li { display: block; height: 25%; min-height: 50px; position: relative; opacity: 0; }
-        .overlay.open ul li { opacity: 1; transition: all .4s ease .1s; }
-        .overlay ul li a { display: block; position: relative; color: var(--text-color); text-decoration: none; }
-        .overlay ul li a:hover { color: var(--second-text-color); }
 
-        /* Media Query per schermi piccoli */
-        @media (max-width: 1000px) {
-            .desk-nav { display: none; }
-            .button-container { display: block; }
-            .hero-logo {
-                max-width: 90%;
+        .project-card:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .project-cover {
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0; /* Impedisce alla copertina di rimpicciolirsi */
+        }
+        
+        .project-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project-info {
+            flex-grow: 1;
+            padding: 12px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Occupa tutta l'altezza */
+        }
+
+        .track-details h3 {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .track-details p {
+            font-size: 0.9em;
+            opacity: 0.7;
+            margin: 4px 0 0;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 4px; /* Spessore della barra */
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #fff;
+            border-radius: 2px;
+        }
+        
+        .player-controls {
+             padding-right: 20px;
+        }
+
+        .play-pause-btn {
+            width: 44px; /* Dimensione del cerchio */
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .play-pause-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+        
+        @media (max-width: 500px) {
+            .track-details h3 {
+               font-size: 1em;
             }
-            
-            /* MODIFICA PER GRANA STATICA SU MOBILE */
-            body::before {
-                animation: none; /* Rimuove l'animazione della grana */
-                will-change: auto; /* Resetta l'ottimizzazione will-change */
-                top: 0; /* Centra l'immagine statica */
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-                
+             .track-details p {
+               font-size: 0.8em;
+            }
+        }
+        /* --- FINE SEZIONE PROGETTI --- */
+
+
+        .merch-section {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 40px 20px 100px 20px;
+            flex-wrap: wrap; 
+        }
+
+        .card {
+            width: 340px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info { 
+            padding: 25px; 
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .product-info h2 { 
+            font-size: 1.8em; 
+            font-weight: 700; 
+            line-height: 1.2; 
+            margin-bottom: 8px; 
+        }
+        
+        .product-info .description { 
+            font-size: 0.95em; 
+            opacity: 0.8; 
+            margin-bottom: 20px; 
+            line-height: 1.6;
+        }
+        
+        .buy-action { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .price { 
+            font-size: 1.5em; 
+            font-weight: 700; 
+        }
+
+        .buy-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover { background: rgba(255, 255, 255, 0.3); }
+        .buy-button svg { width: 20px; height: 20px; }
+
+        @media (max-width: 768px) {
+            .merch-section {
+                justify-content: flex-start;
+                padding-left: 20px;
+                padding-right: 20px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory; 
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .merch-section::-webkit-scrollbar {
+                display: none;
+            }
+            .card {
+                scroll-snap-align: start;
+                flex-shrink: 0;
             }
         }
     </style>
@@ -246,26 +259,9 @@
 <body>
     <svg class="scratches-overlay" preserveAspectRatio="none" viewBox="0 0 1000 1000">
         <defs>
-            <path id="p1" d="M100 150 L900 120" />
-            <path id="p2" d="M50 40 L150 90 L130 110" />
-            <path id="p3" d="M50 250 Q 250 200 500 250 T 950 300" />
-            <path id="p4" d="M800 50 L850 450" />
-            <path id="p5" d="M980 950 L850 850 L950 800" />
-            <path id="p6" d="M100 800 q 50 -50 100 0 t 100 0 t 100 0 t 100 0" />
-            <path id="p7" d="M450 480 L550 520" />
-            <path id="p8" d="M200 950 C 400 700, 600 700, 800 950" />
-            <path id="p9" d="M900 100 L950 150" />
+            <path id="p1" d="M100 150 L900 120" /><path id="p2" d="M50 40 L150 90 L130 110" /><path id="p3" d="M50 250 Q 250 200 500 250 T 950 300" /><path id="p4" d="M800 50 L850 450" /><path id="p5" d="M980 950 L850 850 L950 800" /><path id="p6" d="M100 800 q 50 -50 100 0 t 100 0 t 100 0 t 100 0" /><path id="p7" d="M450 480 L550 520" /><path id="p8" d="M200 950 C 400 700, 600 700, 800 950" /><path id="p9" d="M900 100 L950 150" />
         </defs>
-
-        <use href="#p1" class="scratch-line s1" />
-        <use href="#p2" class="scratch-line s2" />
-        <use href="#p3" class="scratch-line s3" />
-        <use href="#p4" class="scratch-line s4" />
-        <use href="#p5" class="scratch-line s5" />
-        <use href="#p6" class="scratch-line s6" />
-        <use href="#p7" class="scratch-line s7" />
-        <use href="#p8" class="scratch-line s8" />
-        <use href="#p9" class="scratch-line s9" />
+        <use href="#p1" class="scratch-line s1" /><use href="#p2" class="scratch-line s2" /><use href="#p3" class="scratch-line s3" /><use href="#p4" class="scratch-line s4" /><use href="#p5" class="scratch-line s5" /><use href="#p6" class="scratch-line s6" /><use href="#p7" class="scratch-line s7" /><use href="#p8" class="scratch-line s8" /><use href="#p9" class="scratch-line s9" />
     </svg>
 
     <nav class="desk-nav">
@@ -277,12 +273,7 @@
         </ul>
     </nav>
 
-    <div class="button-container">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
+    <div class="button-container"><span></span><span></span><span></span></div>
     <div class="overlay">
         <nav>
             <ul>
@@ -299,48 +290,216 @@
             <div class="hero-content">
                 <img src="scritta.png" alt="31 LUGLIO STUDIO Logo" class="hero-logo">
                 <p class="tagline">Soundscapes Redefined</p>
-
                 <div class="hero-buttons">
                     <a href="#merch" class="hero-button primary">Merch →</a>
                     <a href="#prenota" class="hero-button secondary">Prenota →</a>
                 </div>
             </div>
-
             <div class="scroll-indicator">Scroll</div>
+        </section>
+
+        <section class="projects-intro">
+            <h2>I NOSTRI PROGETTI</h2>
+            <p>Dai un ascolto agli ultimi lavori prodotti, mixati e masterizzati nel nostro studio.</p>
+        </section>
+
+        <section class="projects-section" id="projects">
+            <div class="project-card">
+                <audio class="audio-source" src="notitle.mp3" preload="metadata"></audio>
+                
+                <div class="project-cover">
+                    <img src="ca.jpg" alt="Copertina brano">
+                </div>
+                
+                <div class="project-info">
+                     <div class="track-details">
+                        <h3>Enrico Garrapa</h3>
+                        <p>No Title</p>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="player-controls">
+                    <button class="play-pause-btn">
+                        <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <audio class="audio-source" src="glitchoflove.mp3" preload="metadata"></audio>
+                <div class="project-cover">
+                    <img src="ca2.jpg" alt="Copertina brano">
+                </div>
+                <div class="project-info">
+                     <div class="track-details">
+                        <h3>Enrico Garrapa</h3>
+                        <p>Glitch of love</p>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="player-controls">
+                    <button class="play-pause-btn">
+                        <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="merch-intro">
+            <h2>MERCH ESCLUSIVO</h2>
+            <p>Pezzi unici, nati dalla nostra passione per il suono e il design. Disponibilità limitata.</p>
+        </section>
+        
+        <section class="merch-section" id="merch">
+            <div class="card" data-tilt>
+                <div class="product-image"><img src="tshirt2.jpg" alt="Felpa con cappuccio"></div>
+                <div class="product-info">
+                    <h2>T-Shirt</h2>
+                    <p class="description">Edizione limitata con ricamo sul petto e cappuccio felpato. Una descrizione un po' più lunga per dimostrare che la card si adatta.</p>
+                    <div class="buy-action">
+                        <span class="price">€79.90</span>
+                        <a href="#" class="buy-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
+                            <span>Acquista</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card" data-tilt>
+                <div class="product-image"><img src="tshirt1.jpg" alt="T-Shirt design"></div>
+                <div class="product-info">
+                    <h2>T-Shirt "Sottosopra"</h2>
+                    <p class="description">T-shirt.</p>
+                    <div class="buy-action">
+                        <span class="price">€34.90</span>
+                        <a href="#" class="buy-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
+                            <span>Acquista</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card" data-tilt>
+                <div class="product-image"><img src="tshirt2.jpg" alt="Felpa con cappuccio"></div>
+                <div class="product-info">
+                    <h2>T-Shirt</h2>
+                    <p class="description">Edizione limitata con ricamo sul petto e cappuccio felpato. Una descrizione un po' più lunga per dimostrare che la card si adatta.</p>
+                    <div class="buy-action">
+                        <span class="price">€79.90</span>
+                        <a href="#" class="buy-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
+                            <span>Acquista</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer class="footer">
-        <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">Spotify</a>
-            <a href="#">Soundcloud</a>
-        </div>
+        <div class="social-links"><a href="#">Instagram</a><a href="#">Spotify</a><a href="#">Soundcloud</a></div>
         <p>&copy; 2025 31 LUGLIO STUDIO. Tutti i diritti riservati.</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Toggle per il menu mobile
             $('.button-container').click(function() {
                 $(this).toggleClass('active');
                 $('.overlay').toggleClass('open');
             });
 
-            // Aggiunge la classe 'scrolled' alla navbar desktop durante lo scroll
             function handleScroll() {
                 var header = $('.desk-nav');
                 var scrollPosition = $(window).scrollTop();
-                if (scrollPosition > 50) {
-                    header.addClass('scrolled');
-                } else {
-                    header.removeClass('scrolled');
-                }
+                if (scrollPosition > 50) { header.addClass('scrolled'); } 
+                else { header.removeClass('scrolled'); }
             }
-
             $(window).on('scroll', handleScroll);
-            handleScroll(); // Controlla lo stato al caricamento della pagina
+            handleScroll();
+        });
+        
+        VanillaTilt.init(document.querySelectorAll(".card"), {
+            max: 15, speed: 400, glare: true, "max-glare": 0.1,
+        });
+
+        /* --- SCRIPT PER PLAYER AUDIO --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectCards = document.querySelectorAll('.project-card');
+
+            projectCards.forEach(card => {
+                const audio = card.querySelector('.audio-source');
+                const playPauseBtn = card.querySelector('.play-pause-btn');
+                const playIcon = card.querySelector('.play-icon');
+                const pauseIcon = card.querySelector('.pause-icon');
+                const progressBarContainer = card.querySelector('.progress-bar-container');
+                const progressBar = card.querySelector('.progress-bar');
+
+                playPauseBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isPlaying = card.classList.contains('playing');
+                    
+                    if (isPlaying) {
+                        audio.pause();
+                    } else {
+                        document.querySelectorAll('.audio-source').forEach(otherAudio => {
+                            if (otherAudio !== audio) {
+                                otherAudio.pause();
+                            }
+                        });
+                        audio.play();
+                    }
+                });
+
+                audio.addEventListener('play', () => {
+                    projectCards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                           otherCard.classList.remove('playing');
+                        }
+                    });
+                    card.classList.add('playing');
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                });
+
+                audio.addEventListener('pause', () => {
+                    card.classList.remove('playing');
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
+                });
+
+                audio.addEventListener('timeupdate', () => {
+                    const { currentTime, duration } = audio;
+                    if (duration) {
+                        const progressPercent = (currentTime / duration) * 100;
+                        progressBar.style.width = `${progressPercent}%`;
+                    }
+                });
+                
+                 audio.addEventListener('ended', () => {
+                    card.classList.remove('playing');
+                    progressBar.style.width = `0%`;
+                 });
+
+                progressBarContainer.addEventListener('click', function(e) {
+                    const width = this.clientWidth;
+                    const clickX = e.offsetX;
+                    const duration = audio.duration;
+                    if (duration) {
+                        audio.currentTime = (clickX / width) * duration;
+                    }
+                });
+            });
         });
     </script>
 </body>

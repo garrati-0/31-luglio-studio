@@ -1,0 +1,33 @@
+/* ========================================
+   IMPOSTAZIONI GLOBALI E STILI DI BASE
+   ======================================== */
+:root {
+    --second-text-color: rgb(210, 150, 152);
+    --text-color: #E8E1D7;
+    --accent-color: #c4b09d;
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(-45deg, #c800a0, #4f008c, #000000, #4f008c);
+    background-size: 400% 400%;
+    animation: moveGradient 20s ease infinite;
+    color: var(--text-color);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    position: relative;
+    will-change: background-position;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+}
