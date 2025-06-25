@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="css/card.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* STILE COPIATO E ADATTATO DALLA PAGINA PRENOTA.HTML */
+        body {
+            background-color: #111;
+            color: #fff;
+        }
 
         /* BARRA SUPERIORE TRASPARENTE */
         .top-bar-nav {
@@ -20,17 +23,17 @@
             left: 0;
             width: 100%;
             padding: 20px 40px;
-            background-color: transparent;
+            background-color: transparent; /* Resa trasparente */
+            /* Rimosso il border-bottom per una trasparenza completa */
             z-index: 50;
-            box-sizing: border-box;
         }
 
         .back-to-home-btn {
             display: inline-flex;
             align-items: center;
-            color: var(--text-color);
+            color: #fff;
             text-decoration: none;
-            font-family: var(--font-display);
+            font-family: 'Anton', sans-serif;
             font-size: 1.5rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -41,16 +44,17 @@
             width: 24px;
             height: 24px;
             margin-right: 12px;
-            fill: var(--primary-color);
+            fill: #00A896;
             transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .back-to-home-btn:hover {
-            color: var(--primary-color);
+            color: #00A896;
         }
         .back-to-home-btn:hover svg {
             transform: translateX(-5px);
         }
+
 
         /* CONTENITORE PRINCIPALE */
         .contact-page-container {
@@ -273,6 +277,7 @@
             <a href="#">Soundcloud</a>
         </div>
         <p>&copy; 2025 31 LUGLIO STUDIO. Tutti i diritti riservati.</p>
+        <p>sito creato da Enrico Garrapa</p>
     </footer>
 
 </body>
