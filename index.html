@@ -8,383 +8,80 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="navbar.css">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/home.css">
 
-    <style>
-        /* ========================================
-        IMPOSTAZIONI GLOBALI E STILI DI BASE
-        PALETTE: #D0BA98, #23140C, #91040C  #3D1020
-        ========================================
-        */
-        :root {
-            --background-color: #000; /* Marrone Scuro */
-            --text-color:rgb(82, 2, 6);       /* Beige/Sabbia */
-            --accent-color: #30225F;     /* Rosso Scuro/Borgogna */
-            --font-display: 'Anton', sans-serif;
-            --font-body: 'Montserrat', sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #000;
-            color: var(--text-color);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-        }
-        
- /* NUOVO: Effetto rumore vintage animato */
-body::after {
-  content: "";
-  position: fixed;
-  z-index: 100;
-  pointer-events: none;
-
-  width: 300vw;
-  height: 300vh;
-  top: -100vh;
-  left: -100vw;
-  
-  /* Usiamo un SVG generato al posto dell'immagine */
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
-  
-  /* Regoliamo l'opacità per un effetto più sottile */
-  opacity: 0.10;
-
-  /* La stessa animazione di prima */
-  animation: grain 8s steps(10) infinite;
-}
-        a {
-            color: #000;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* ========================================
-        NAVIGAZIONE
-        ========================================
-        */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 5%;
-            position: absolute; /* Sovrapposta all'hero */
-            width: 100%;
-            z-index: 10;
-        }
-
-        .navbar .logo {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            color: var(--text-color);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #000;
-        }
-
-        /* ========================================
-        SEZIONE HERO (STILE POSTER)
-        ========================================
-        */
-        .hero {
-            height: 100vh; /* Altezza a tutto schermo */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 5%;
-            position: relative; /* Per posizionare gli elementi del footer */
-        }
-
-        .hero-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(4rem, 20vw, 18rem);
-            line-height: 0.9;
-            text-transform: uppercase;
-            color: var(--accent-color);
-            margin: 0;
-        }
-        
-        .hero .tagline {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            margin-top: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        
-        /* NUOVO: Footer stile poster */
-        .poster-details {
-            width: 100%;
-            padding: 2rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 2rem;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); /* Sfumatura per leggibilità */
-        }
-
-        .poster-column {
-            flex: 1;
-            text-align: left;
-        }
-        .poster-column.center {
-            text-align: center;
-        }
-        .poster-column.right {
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .poster-column h3 {
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-            color: var(--accent-color);
-        }
-        
-        .poster-column p {
-            font-size: 0.8rem;
-            line-height: 1.4;
-            text-transform: uppercase;
-        }
-
-        .rating-box {
-            border: 2px solid var(--text-color);
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-top: 1rem;
-        }
-        
-        .rating-letter {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            line-height: 1;
-        }
-        
-        .rating-text {
-            font-size: 0.6rem;
-            text-align: left;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-        
-        /* ========================================
-        SEZIONE ABOUT / "FEATURES"
-        ========================================
-        */
-        .feature-section {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            align-items: center;
-            padding: 10rem 5%;
-            gap: 2rem;
-        }
-        
-        .feature-text h2 {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .feature-text p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 500px;
-        }
-        
-        .vertical-text-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .vertical-text {
-            font-family: var(--font-display);
-            font-size: clamp(5rem, 18vw, 15rem);
-            color: rgba(208, 186, 152, 0.1); 
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            text-transform: uppercase;
-            line-height: 0.8;
-        }
-
-        /* ========================================
-        SEZIONE CALL TO ACTION (CTA)
-        ========================================
-        */
-        .cta-section {
-            padding: 10rem 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .cta-section h2 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 12vw, 10rem);
-            text-transform: uppercase;
-            color: var(--accent-color);
-            transform: rotate(-4deg);
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-        
-        .cta-section h2:hover {
-            transform: rotate(0deg) scale(1.05);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 3rem;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 2rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: var(--accent-color);
-            color: var(--background-color);
-        }
-        
-        /* ========================================
-        FOOTER
-        ========================================
-        */
-        .footer {
-            text-align: center;
-            padding: 4rem 5% 2rem;
-            border-top: 1px solid rgba(208, 186, 152, 0.1);
-        }
-
-        .footer .social-links a {
-             margin: 0 1rem;
-             color: var(--text-color);
-             font-weight: normal;
-        }
-        
-        .footer .social-links a:hover {
-            color: var(--accent-color);
-        }
-        
-        .footer p {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: rgba(208, 186, 152, 0.5);
-        }
-        
-
-        /* NUOVO: Keyframes per l'animazione del rumore */
-@keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%, 0%); }
-  70% { transform: translate(0%, 15%); }
-  80% { transform: translate(3%, 35%); }
-  90% { transform: translate(-10%, 10%); }
-}
-
-    </style>
 </head>
 <body>
-<div class="desk-nav">
-    <div class="nav-container">
-      
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="chi_siamo.html">Chi siamo</a></li>
-        <li><a href="#services">Servizi</a></li>
-        <li><a href="#contact">Contatti</a></li>
-      </ul>
-      
+
+    <div class="desk-nav">
+        <div class="nav-container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="chi_siamo.html">Chi siamo</a></li>
+                <li><a href="#services">Servizi</a></li>
+                <li><a href="#contact">Contatti</a></li>
+                <li ><button id="theme-toggle-btn" aria-label="Cambia il tema">
+                <img 
+                    id="theme-icon"
+                    width="20" 
+                    height="20" 
+                    src="https://img.icons8.com/ios-filled/30/FFFFFF/sun--v1.png" 
+                    alt="Icona del sole per attivare il tema chiaro"
+                />
+            </button></li>
+            </ul>
+        </div>
     </div>
-  </div>
 
-  <div class="button-container">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <div class="overlay">
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="chi_siamo.html">Chi siamo</a></li>
-        <li><a href="#services">Servizi</a></li>
-        <li><a href="#contact">Contatti</a></li>
-      </ul>
-      <div class="mobile-theme-toggle">
-        <button class="theme-toggle" id="toggleThemeMobile">
-          <i class="fas fa-palette"></i>
-          Cambia Tema
-        </button>
-      </div>
-    </nav>
-  </div>
+    <div class="button-container">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="overlay">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="chi_siamo.html">Chi siamo</a></li>
+                <li><a href="#services">Servizi</a></li>
+                <li><a href="#contact">Contatti</a></li>
+                 <li ><button id="theme-toggle-btn-mobile" aria-label="Cambia il tema">
+                <img 
+                    id="theme-icon-mobile"
+                    width="20" 
+                    height="20" 
+                    src="https://img.icons8.com/ios-filled/30/FFFFFF/sun--v1.png" 
+                    alt="Icona del sole per attivare il tema chiaro"
+                />
+            </button></li>
+            </ul>
+        </nav>
+    </div>
 
     <main>
         <section class="hero" id="home">
             <div class="hero-content">
-                <h1>31 LUGLIO<br>STUDIO</h1>
-                <p class="tagline">Soundscapes Redefined</p>
+                <h1 style="">31 LUGLIO<br>STUDIO</h1>
+                <p class="tagline" style="color: rgb(82, 2, 6);">Soundscapes Redefined</p>
             </div>
             
             <div class="poster-details">
                 <div class="poster-column left">
-                    <h3>Artisti</h3>
+                    <h3 style="color: rgb(82, 2, 6);">Artisti</h3>
                     <p>Nome1 Cognome1 • Nome1 Cognome1i<br>Nome1 Cognome1 • Nome1 Cognome1</p>
                 </div>
                 <div class="poster-column center">
-                    <h3>31 LUGLIO STUDIO</h3>
-                    <p>Est. 2025 • Monteroni, Italia</p>
+                    <h3 style="color:rgb(82, 2, 6);">31 LUGLIO STUDIO</h3>
+                    <p style="color:rgb(82, 2, 6);">Est. 2025 • Monteroni, Italia</p>
                 </div>
                 <div class="poster-column right">
-                    <p>PROGETTI SONORI DI<br>Nome1 Cognome1 • Nome1 Cognome1</p>
+                    <h3 style="color: rgb(82, 2, 6);">Sito progettao da</h3>
+                    <p>Enrico Garrapa 
                     <div class="rating-box">
-                        <span class="rating-letter">S</span>
+                        <span class="rating-letter" >S</span>
                         <span class="rating-text">Sound Quality<br>Guaranteed</span>
                     </div>
                 </div>
@@ -416,7 +113,8 @@ body::after {
         </div>
         <p>&copy; 2025 31 LUGLIO STUDIO. Tutti i diritti riservati.</p>
     </footer>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="navbar.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 </html>
