@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenota - 31 LUGLIO STUDIO</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/card.css">
+    
+    <style>
+        /* COLORE PRINCIPALE: #00A896 (Ciano/Verde Acqua) */
+
+        body {
+            background-color: #111;
+            color: #fff;
+        }
+
+        /* BARRA SUPERIORE TRASPARENTE */
+        .top-bar-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            background-color: transparent; /* Resa trasparente */
+            /* Rimosso il border-bottom per una trasparenza completa */
+            z-index: 50;
+        }
+
+        .back-to-home-btn {
+            display: inline-flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        
+        .back-to-home-btn svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            fill: #00A896;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .back-to-home-btn:hover {
+            color: #00A896;
+        }
+        .back-to-home-btn:hover svg {
+            transform: translateX(-5px);
+        }
+
+
+        .booking-page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 20px 50px 20px;
+            text-align: center;
+        }
+
+        .booking-page-container h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 3rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .booking-page-container h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+            color: #00A896;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .price-list {
+            margin-bottom: 60px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-item h4 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .price-item .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #00A896;
+        }
+        
+        /* Stili per il CALENDARIO SETTIMANALE */
+        .booking-scheduler {
+            margin-bottom: 60px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header h3 {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 1.8rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .week-nav-btn {
+            background-color: rgba(0, 168, 150, 0.2);
+            border: 1px solid #00A896;
+            color: #00A896;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .week-nav-btn:hover {
+            background-color: #00A896;
+            color: #111;
+        }
+        .week-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background-color: transparent;
+            color: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding-bottom: 10px;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .day-cell {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            min-height: 140px;
+            padding: 8px;
+            background-color: rgba(0,0,0,0.2);
+        }
+        
+        .day-cell.is-today {
+            border: 2px solid #00A896;
+        }
+
+        .day-cell.is-past-day {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .day-cell.is-past-day .day-number {
+            color: rgba(255, 255, 255, 0.2);
+            text-decoration: line-through;
+        }
+        .day-cell.is-past-day .time-slots {
+            display: none;
+        }
+
+        .day-number {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .time-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 120px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .time-slots::-webkit-scrollbar { width: 4px; }
+        .time-slots::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); }
+        .time-slots::-webkit-scrollbar-thumb { background: #00A896; }
+
+        .time-slot {
+            padding: 8px;
+            border: 1px solid #00A896;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .time-slot:hover {
+            background-color: rgba(0, 168, 150, 0.2);
+        }
+        
+        .time-slot.selected {
+            background-color: #00A896;
+            color: #111;
+            font-weight: 700;
+        }
+
+        /* Form Dati Utente */
+        .user-details-form {
+            display: none;
+            margin-top: 40px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%; padding: 12px; background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 1rem;
+        }
+
+        .confirm-button {
+            display: block; width: 100%; padding: 15px; font-family: 'Anton', sans-serif; font-size: 1.2rem; letter-spacing: 1px; text-transform: uppercase; background-color: #00A896; color: #111; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;
+        }
+        .confirm-button:hover {
+            background-color: #00c9b3;
+        }
+        
+        @media (max-width: 768px) {
+            .calendar-grid { grid-template-columns: repeat(2, 1fr); }
+            .calendar-header h3 { font-size: 1.2rem; }
+            .back-to-home-btn { font-size: 1.2rem; }
+            .top-bar-nav { padding: 20px; }
+        }
+        @media (max-width: 480px) {
+            .calendar-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <svg class="scratches-overlay" preserveAspectRatio="none" viewBox="0 0 1000 1000"><defs><path id="p1" d="M100 150 L900 120" /><path id="p2" d="M50 40 L150 90 L130 110" /><path id="p3" d="M50 250 Q 250 200 500 250 T 950 300" /><path id="p4" d="M800 50 L850 450" /><path id="p5" d="M980 950 L850 850 L950 800" /><path id="p6" d="M100 800 q 50 -50 100 0 t 100 0 t 100 0 t 100 0" /><path id="p7" d="M450 480 L550 520" /><path id="p8" d="M200 950 C 400 700, 600 700, 800 950" /><path id="p9" d="M900 100 L950 150" /></defs><use href="#p1" class="scratch-line s1" /><use href="#p2" class="scratch-line s2" /><use href="#p3" class="scratch-line s3" /><use href="#p4" class="scratch-line s4" /><use href="#p5" class="scratch-line s5" /><use href="#p6" class="scratch-line s6" /><use href="#p7" class="scratch-line s7" /><use href="#p8" class="scratch-line s8" /><use href="#p9" class="scratch-line s9" /></svg>
+    
+    <div class="top-bar-nav">
+        <a href="index.html" class="back-to-home-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
+            <span>31 Luglio Studio</span>
+        </a>
+    </div>
+
+    <main class="booking-page-container">
+        
+        <section class="price-list">
+            <h2>Listino Prezzi</h2>
+            <div class="price-item"><h4>Registrazione</h4><span class="price">€40 / ora</span></div>
+            <div class="price-item"><h4>Mix & Master</h4><span class="price">€250 / traccia</span></div>
+            <div class="price-item"><h4>Produzione Completa</h4><span class="price">Contattaci</span></div>
+        </section>
+
+        <section class="booking-scheduler">
+            <h2>Seleziona Giorno e Ora</h2>
+            <div class="calendar-header">
+                <button id="prev-week-btn" class="week-nav-btn">&lt;</button>
+                <h3 id="week-range-display"></h3>
+                <button id="next-week-btn" class="week-nav-btn">&gt;</button>
+            </div>
+            <div class="calendar-grid" id="day-names-grid"></div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+        </section>
+
+        <section class="user-details-form" id="booking-form">
+            <h3>Completa la tua prenotazione</h3>
+            <form id="details-form">
+                <div class="form-group"><label for="name">Nome</label><input type="text" id="name" name="name" placeholder="Mario" required></div>
+                <div class="form-group"><label for="surname">Cognome</label><input type="text" id="surname" name="surname" placeholder="Rossi" required></div>
+                <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="mario.rossi@email.com" required></div>
+                <div class="form-group"><label for="phone">Numero di telefono</label><input type="tel" id="phone" name="phone" placeholder="3331234567" required></div>
+                <input type="hidden" id="selected-date" name="selected-date">
+                <input type="hidden" id="selected-time" name="selected-time">
+                <button type="submit" class="confirm-button">Conferma Prenotazione</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="footer"><div class="social-links"><a href="#">Instagram</a><a href="#">Spotify</a><a href="#">Soundcloud</a></div><p>&copy; 2025 31 LUGLIO STUDIO. Tutti i diritti riservati.</p></footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const calendarGrid = document.getElementById('calendar-grid');
+            const weekRangeDisplay = document.getElementById('week-range-display');
+            const dayNamesGrid = document.getElementById('day-names-grid');
+            const prevWeekBtn = document.getElementById('prev-week-btn');
+            const nextWeekBtn = document.getElementById('next-week-btn');
+            const bookingForm = document.getElementById('booking-form');
+            const detailsForm = document.getElementById('details-form');
+            const selectedDateInput = document.getElementById('selected-date');
+            const selectedTimeInput = document.getElementById('selected-time');
+
+            let currentWeekStart = new Date();
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const monthNames = ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
+            const dayNames = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
+            dayNamesGrid.innerHTML = dayNames.map(name => `<div class="calendar-day-name">${name}</div>`).join('');
+            
+            function getSlotsForDay(date) {
+                const day = date.getDate();
+                const dayOfWeek = date.getDay();
+                if (day === 25 && date.getMonth() === 11) return '';
+                let slots = [{ time: "10:00", duration: "11:00" }, { time: "11:00", duration: "12:00" }];
+                if(dayOfWeek === 5 || dayOfWeek === 6) {
+                     slots.push({ time: "15:00", duration: "16:00" }, { time: "16:00", duration: "17:00" });
+                }
+                return slots.map(slot => `<div class="time-slot" data-date="${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}" data-time="${slot.time}">${slot.time} - ${slot.duration}</div>`).join('');
+            }
+
+            function renderWeek(startDate) {
+                const dayOfWeek = (startDate.getDay() + 6) % 7;
+                startDate.setDate(startDate.getDate() - dayOfWeek);
+                startDate.setHours(0,0,0,0);
+                
+                calendarGrid.innerHTML = '';
+                const weekEndDate = new Date(startDate);
+                weekEndDate.setDate(startDate.getDate() + 6);
+                
+                weekRangeDisplay.textContent = `${startDate.getDate()} ${monthNames[startDate.getMonth()]} - ${weekEndDate.getDate()} ${monthNames[weekEndDate.getMonth()]} ${weekEndDate.getFullYear()}`;
+                
+                const startOfThisWeek = new Date(today);
+                startOfThisWeek.setDate(startOfThisWeek.getDate() - ((today.getDay() + 6) % 7));
+                prevWeekBtn.disabled = startDate <= startOfThisWeek;
+
+                for (let i = 0; i < 7; i++) {
+                    const cellDate = new Date(startDate);
+                    cellDate.setDate(startDate.getDate() + i);
+                    
+                    const cell = document.createElement('div');
+                    cell.className = 'day-cell';
+                    
+                    if (cellDate < today) {
+                        cell.classList.add('is-past-day');
+                        cell.innerHTML = `<div class="day-number">${cellDate.getDate()}</div><div class="time-slots"></div>`;
+                    } else {
+                        if (cellDate.getTime() === today.getTime()) {
+                            cell.classList.add('is-today');
+                        }
+                        cell.innerHTML = `<div class="day-number">${cellDate.getDate()}</div><div class="time-slots">${getSlotsForDay(cellDate)}</div>`;
+                    }
+                    calendarGrid.appendChild(cell);
+                }
+            }
+
+            prevWeekBtn.addEventListener('click', () => {
+                currentWeekStart.setDate(currentWeekStart.getDate() - 7);
+                renderWeek(currentWeekStart);
+            });
+            nextWeekBtn.addEventListener('click', () => {
+                currentWeekStart.setDate(currentWeekStart.getDate() + 7);
+                renderWeek(currentWeekStart);
+            });
+
+            calendarGrid.addEventListener('click', (event) => {
+                const slot = event.target.closest('.time-slot');
+                if (slot && !slot.closest('.is-past-day')) {
+                    const currentSelected = document.querySelector('.time-slot.selected');
+                    if (currentSelected) currentSelected.classList.remove('selected');
+                    slot.classList.add('selected');
+                    selectedDateInput.value = slot.dataset.date;
+                    selectedTimeInput.value = slot.dataset.time;
+                    bookingForm.style.display = 'block';
+                    bookingForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            detailsForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const formData = new FormData(detailsForm);
+                const data = Object.fromEntries(formData.entries());
+                alert(`Grazie ${data.name}!\n\nHai prenotato per il ${data['selected-date']} alle ore ${data['selected-time']}.\nVerrai ricontattato via email per la conferma definitiva.`);
+                detailsForm.reset();
+                bookingForm.style.display = 'none';
+                const currentSelected = document.querySelector('.time-slot.selected');
+                if (currentSelected) currentSelected.classList.remove('selected');
+            });
+
+            renderWeek(new Date());
+        });
+    </script>
+</body>
+</html>
