@@ -11,9 +11,12 @@
     
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/card.css">
-   <style>
 
-</style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <style>
+        /* Puoi aggiungere qui stili personalizzati se necessario */
+    </style>
     
 </head>
 <body>
@@ -23,28 +26,6 @@
         </defs>
         <use href="#p1" class="scratch-line s1" /><use href="#p2" class="scratch-line s2" /><use href="#p3" class="scratch-line s3" /><use href="#p4" class="scratch-line s4" /><use href="#p5" class="scratch-line s5" /><use href="#p6" class="scratch-line s6" /><use href="#p7" class="scratch-line s7" /><use href="#p8" class="scratch-line s8" /><use href="#p9" class="scratch-line s9" />
     </svg>
-<!--
-    <nav class="desk-nav">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="chi_siamo.html">Chi siamo</a></li>
-            <li><a href="#services">Servizi</a></li>
-            <li><a href="#contact">Contatti</a></li>
-        </ul>
-    </nav>
-
-    <div class="button-container"><span></span><span></span><span></span></div>
-    <div class="overlay">
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="chi_siamo.html">Chi siamo</a></li>
-                <li><a href="#services">Servizi</a></li>
-                <li><a href="#contact">Contatti</a></li>
-            </ul>
-        </nav>
-    </div>
--->
 <main>
     <section class="hero" id="home">
         <div class="hero-content">
@@ -55,10 +36,13 @@
                 <a href="prenota.html" class="hero-button secondary">Prenota →</a>
             </div>
         </div>
-        <div class="scroll-indicator">Scroll</div>
+        <div class="scroll-container">
+            <div class="vertical-line"></div>
+            <div class="scroll-indicator">Scroll</div>
+        </div>
     </section>
 
-    <section class="section-intro" id="next-release">
+    <section class="section-intro" id="next-release" data-aos="fade-up">
         <h2>PROSSIMA USCITA</h2>
         <div class="release-card-horizontal">
             <div class="release-image">
@@ -91,12 +75,13 @@
             </div>
         </div>
     </section>
-    <section class="projects-intro">
+
+    <section class="projects-intro" data-aos="fade-up">
         <h2>I NOSTRI PROGETTI</h2>
         <p>Dai un ascolto agli ultimi lavori prodotti, mixati e masterizzati nel nostro studio.</p>
     </section>
 
-    <section class="projects-section" id="projects">
+    <section class="projects-section" id="projects" data-aos="fade-up">
         <div class="project-card">
             <audio class="audio-source" src="notitle.mp3" preload="metadata"></audio>
             <div class="project-cover">
@@ -142,12 +127,12 @@
         </div>
     </section>
 
-    <section class="merch-intro">
+    <section class="merch-intro" data-aos="fade-up">
         <h2>MERCH ESCLUSIVO</h2>
         <p>Pezzi unici, nati dalla nostra passione per il suono e il design. Disponibilità limitata.</p>
     </section>
     
-    <section class="merch-section" id="merch">
+    <section class="merch-section" id="merch" data-aos="fade-up">
         <div class="card" data-tilt>
             <div class="product-image"><img src="tshirt2.jpg" alt="Felpa con cappuccio"></div>
             <div class="product-info">
@@ -192,12 +177,12 @@
         </div>
     </section>
 
-    <section class="section-intro" id="team">
+    <section class="section-intro" id="team" data-aos="fade-up">
         <h2>IL NOSTRO TEAM</h2>
         <p>Siamo un collettivo di creativi, tecnici e visionari uniti dalla stessa ossessione: scolpire il suono perfetto.</p>
     </section>
     
-    <section class="team-section">
+    <section class="team-section" data-aos="fade-up">
         <div class="team-card">
             <div class="team-photo">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop" alt="Foto membro del team">
@@ -221,7 +206,7 @@
         </div>
     </section>
     
-    <section class="section-intro">
+    <section class="section-intro" data-aos="fade-up">
         <h2>Seguici su Instagram</h2>
         <p>Dai un’occhiata agli ultimi post e resta connesso con tutto quello che succede dentro e fuori allo studio.</p>
         <div class="final-cta">
@@ -229,7 +214,7 @@
         </div>
     </section>
     
-    <section class="section-intro">
+    <section class="section-intro" data-aos="fade-up">
         <h2>Prendi parte</h2>
         <p>Cerchiamo talenti pronti a brillare.</p>
         <div class="final-cta">
@@ -245,6 +230,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script src="js/script.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000, // Durata dell'animazione in millisecondi
+        once: true,     // L'animazione si esegue solo una volta per elemento
+        offset: 120,    // Attiva l'animazione 120px prima che l'elemento sia visibile
+      });
+    </script>
 
 </body>
 </html>

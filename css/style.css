@@ -80,7 +80,7 @@ body::after {
     width: 200%;
     height: 200%;
     /* Utilizzo dei tuoi nuovi colori per il gradiente */
-    background: linear-gradient(-45deg, #000000, #2f0153, #000000, #5a009e);
+    background: linear-gradient(-45deg, #000000, #410072, #000000, #5a009e);
     z-index: -2; /* Posizionato dietro a tutto, incluso la grana */
     pointer-events: none;
     /* Animazione performante sulla proprietà transform */
@@ -162,6 +162,7 @@ a {
 .footer .social-links a { margin: 0 1rem; color: var(--text-color); font-weight: normal; }
 .footer .social-links a:hover { color: var(--accent-color); }
 .footer p { margin-top: 2rem; font-size: 0.9rem; color: rgba(208, 186, 152, 0.5); }
+
 
 /* ===================================================================
    CSS DELLA NAVIGAZIONE (DESKTOP E MOBILE)
