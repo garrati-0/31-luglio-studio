@@ -1,52 +1,69 @@
+/* ========================================
+   IMPOSTAZIONI GLOBALI E STILI DI BASE
+   (Invariato)
+   ======================================== */
+:root {
+    --second-text-color: rgb(210, 150, 152);
+    --text-color: #E8E1D7;
+    --accent-color: #c4b09d;
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+}
 
-        /* ========================================
-           IMPOSTAZIONI GLOBALI E STILI DI BASE
-           ======================================== */
-        :root {
-            --second-text-color: rgb(210, 150, 152);
-            --text-color: #E8E1D7;
-            --accent-color: #c4b09d;
-            --font-display: 'Anton', sans-serif;
-            --font-body: 'Montserrat', sans-serif;
-        }
+/* ... (il resto del CSS rimane invariato fino al body) ... */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        /* Keyframes per l'animazione dello sfondo */
-        @keyframes moveGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+/* Keyframes per l'animazione della palla di luce (NUOVO) */
+@keyframes orbit {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 0%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 100%; }
+    100% { background-position: 0% 50%; }
+}
 
-        /* Keyframes per l'animazione della grana */
-        @keyframes grain {
-            0%, 100% { transform: translate(0, 0); }
-            10% { transform: translate(-5%, -10%); }
-            20% { transform: translate(-15%, 5%); }
-            30% { transform: translate(7%, -25%); }
-            40% { transform: translate(-5%, 25%); }
-            50% { transform: translate(-15%, 10%); }
-            60% { transform: translate(15%, 0%); }
-            70% { transform: translate(0%, 15%); }
-            80% { transform: translate(3%, 35%); }
-            90% { transform: translate(-10%, 10%); }
-        }
+/* Keyframes per l'animazione della grana (Invariato) */
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+}
 
-        body {
-            background: linear-gradient(-45deg, #c800a0, #4f008c, #000000, #4f008c);
-            background-size: 400% 400%;
-            animation: moveGradient 20s ease infinite;
-            color: var(--text-color);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            position: relative; /* Necessario per posizionare gli overlay */
-            will-change: background-position;
-        }
+
+/* Stile del Body (MODIFICATO) */
+body {
+    /*
+      MODIFICA:
+      1. Il primo gradiente è un radiale (la nostra palla di luce).
+         - È un cerchio (`circle`) di grandi dimensioni (`40vw`, 40% della larghezza del viewport).
+         - Il colore al centro è una versione semi-trasparente del colore del testo, che sfuma verso il trasparente.
+      2. Il secondo gradiente è quello lineare originale, che funge da colore di sfondo statico.
+    */
+    background:
+        radial-gradient(circle at center, rgba(232, 225, 215, 0.15) 0%, transparent 40%),
+        linear-gradient(-45deg, #000000, #4f008c, #000000, #4f008c);
+
+    /*
+      MODIFICA:
+      - La dimensione dello sfondo è stata ridotta a 200% per un movimento più contenuto e visibile della luce.
+      - L'animazione ora usa i nuovi keyframes "orbit" per un percorso circolare.
+    */
+    background-size: 200% 200%;
+    animation: orbit 25s ease-in-out infinite; /* Usiamo la nuova animazione "orbit" */
+
+    color: var(--text-color);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    position: relative;
+    will-change: background-position;
+}
 
         /* Overlay per l'effetto granulare vintage */
         body::before {
@@ -220,13 +237,13 @@
             
             /* MODIFICA PER GRANA STATICA SU MOBILE */
             body::before {
-                animation: none; /* Rimuove l'animazione della grana */
+                animation: none;/* Rimuove l'animazione della grana */
                 will-change: auto; /* Resetta l'ottimizzazione will-change */
                 top: 0; /* Centra l'immagine statica */
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.50' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
                 
             }
         }
