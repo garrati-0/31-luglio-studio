@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>31 LUGLIO STUDIO - Home</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* ========================================
-            IMPOSTAZIONI GLOBALI E STILI DI BASE
-            ======================================== */
+           IMPOSTAZIONI GLOBALI E STILI DI BASE
+           ======================================== */
         :root {
             --second-text-color: rgb(210, 150, 152);
             --text-color: #E8E1D7;
@@ -56,9 +56,6 @@
             font-family: var(--font-body);
             overflow-x: hidden;
             position: relative; /* Necessario per posizionare gli overlay */
-            
-            /* OTTIMIZZAZIONE: Indichiamo al browser che la proprietà 'background-position' sarà animata.
-               Questo permette al browser di preparare ottimizzazioni specifiche. */
             will-change: background-position;
         }
 
@@ -76,23 +73,19 @@
             z-index: -1;
             animation: grain 8s steps(10) infinite;
             pointer-events: none;
-            
-            /* OTTIMIZZAZIONE: Indichiamo al browser che la proprietà 'transform' sarà animata.
-               Questo promuove l'elemento a un suo layer, migliorando le performance dell'animazione. */
             will-change: transform;
         }
 
         /* ==========================================================
-            STILI PER GRAFFI CAOTICI E VARI (SVG)
-            ========================================================== */
-
+           STILI PER GRAFFI CAOTICI E VARI (SVG)
+           ========================================================== */
         @keyframes flicker {
-          0%, 12%, 100% { opacity: 0; }
-          1% { opacity: 0.6; }
-          3% { opacity: 0.4; }
-          5% { opacity: 0.7; }
-          7% { opacity: 0.2; }
-          10% { opacity: 0.5; }
+            0%, 12%, 100% { opacity: 0; }
+            1% { opacity: 0.6; }
+            3% { opacity: 0.4; }
+            5% { opacity: 0.7; }
+            7% { opacity: 0.2; }
+            10% { opacity: 0.5; }
         }
 
         @keyframes move-and-fade {
@@ -104,7 +97,7 @@
 
         .scratches-overlay {
             position: fixed;
-            top: -5%; 
+            top: -5%;
             left: -5%;
             width: 110%;
             height: 110%;
@@ -117,9 +110,6 @@
             stroke: rgba(232, 225, 215, 0.65);
             stroke-width: 1.5px;
             opacity: 0;
-            
-            /* OTTIMIZZAZIONE: Indichiamo al browser che le proprietà 'transform' e 'opacity'
-               saranno animate. Questo è fondamentale per animazioni complesse e multiple. */
             will-change: transform, opacity;
         }
 
@@ -138,11 +128,10 @@
             text-decoration: none;
             font-weight: bold;
         }
-        
-        /* ... [RESTO DEL CSS, IDENTICO A PRIMA] ... */
+
         /* ========================================
-            STILI SPECIFICI DELLA HOME PAGE
-            ======================================== */
+           STILI SPECIFICI DELLA HOME PAGE
+           ======================================== */
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
         .hero-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; }
         .hero-logo { width: 100%; max-width: 700px; height: auto; display: block; }
@@ -160,8 +149,8 @@
         .footer p { margin-top: 2rem; font-size: 0.9rem; color: rgba(208, 186, 152, 0.5); }
 
         /* ===================================================================
-            CSS DELLA NAVIGAZIONE (DESKTOP E MOBILE)
-            =================================================================== */
+           CSS DELLA NAVIGAZIONE (DESKTOP E MOBILE)
+           =================================================================== */
         .desk-nav {
             position: fixed;
             top: 0;
@@ -177,9 +166,6 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(232, 225, 215, 0.1);
-            
-            /* OTTIMIZZAZIONE: Anche se backdrop-filter è pesante, possiamo suggerire
-               al browser di prepararsi al suo cambiamento. */
             will-change: backdrop-filter;
         }
         .desk-nav ul { margin: 0; padding: 0; text-align: center; }
@@ -225,9 +211,6 @@
             background-color: rgba(20, 10, 25, 0.8);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            
-            /* OTTIMIZZAZIONE: Cruciale per l'overlay che appare e scompare.
-               Il browser sa che opacità e backdrop-filter cambieranno. */
             will-change: opacity, backdrop-filter;
         }
         .overlay.open { opacity: 1; visibility: visible; }
@@ -238,12 +221,22 @@
         .overlay ul li a { display: block; position: relative; color: var(--text-color); text-decoration: none; }
         .overlay ul li a:hover { color: var(--second-text-color); }
 
-        /* Media Query per mostrare l'hamburger su schermi piccoli */
+        /* Media Query per schermi piccoli */
         @media (max-width: 1000px) {
             .desk-nav { display: none; }
             .button-container { display: block; }
             .hero-logo {
                 max-width: 90%;
+            }
+            
+            /* MODIFICA PER GRANA STATICA SU MOBILE */
+            body::before {
+                animation: none; /* Rimuove l'animazione della grana */
+                will-change: auto; /* Resetta l'ottimizzazione will-change */
+                top: 0; /* Centra l'immagine statica */
+                left: 0;
+                width: 100%;
+                height: 100%;
             }
         }
     </style>
@@ -261,7 +254,7 @@
             <path id="p8" d="M200 950 C 400 700, 600 700, 800 950" />
             <path id="p9" d="M900 100 L950 150" />
         </defs>
-        
+
         <use href="#p1" class="scratch-line s1" />
         <use href="#p2" class="scratch-line s2" />
         <use href="#p3" class="scratch-line s3" />
@@ -304,13 +297,13 @@
             <div class="hero-content">
                 <img src="scritta.png" alt="31 LUGLIO STUDIO Logo" class="hero-logo">
                 <p class="tagline">Soundscapes Redefined</p>
-                
+
                 <div class="hero-buttons">
                     <a href="#merch" class="hero-button primary">Merch →</a>
                     <a href="#prenota" class="hero-button secondary">Prenota →</a>
                 </div>
             </div>
-            
+
             <div class="scroll-indicator">Scroll</div>
         </section>
     </main>
