@@ -11,8 +11,8 @@
     
     <style>
         /* ========================================
-           IMPOSTAZIONI GLOBALI E STILI DI BASE
-           ======================================== */
+            IMPOSTAZIONI GLOBALI E STILI DI BASE
+            ======================================== */
         :root {
             --second-text-color: rgb(210, 150, 152);
             --text-color: #E8E1D7;
@@ -41,7 +41,7 @@
             20% { transform: translate(-15%, 5%); }
             30% { transform: translate(7%, -25%); }
             40% { transform: translate(-5%, 25%); }
-            50% { translate: -15% 10%; }
+            50% { transform: translate(-15%, 10%); }
             60% { transform: translate(15%, 0%); }
             70% { transform: translate(0%, 15%); }
             80% { transform: translate(3%, 35%); }
@@ -56,6 +56,10 @@
             font-family: var(--font-body);
             overflow-x: hidden;
             position: relative; /* Necessario per posizionare gli overlay */
+            
+            /* OTTIMIZZAZIONE: Indichiamo al browser che la proprietà 'background-position' sarà animata.
+               Questo permette al browser di preparare ottimizzazioni specifiche. */
+            will-change: background-position;
         }
 
         /* Overlay per l'effetto granulare vintage */
@@ -72,45 +76,29 @@
             z-index: -1;
             animation: grain 8s steps(10) infinite;
             pointer-events: none;
+            
+            /* OTTIMIZZAZIONE: Indichiamo al browser che la proprietà 'transform' sarà animata.
+               Questo promuove l'elemento a un suo layer, migliorando le performance dell'animazione. */
+            will-change: transform;
         }
 
         /* ==========================================================
-           NUOVO: STILI PER GRAFFI CAOTICI E VARI (SVG)
-           ========================================================== */
+            STILI PER GRAFFI CAOTICI E VARI (SVG)
+            ========================================================== */
 
-        /* Animazione 1: Apparizione e scomparsa rapida */
         @keyframes flicker {
           0%, 12%, 100% { opacity: 0; }
-          1% { opacity: 0.3; }
-          3% { opacity: 0.1; }
-          5% { opacity: 0.4; }
-          7% { opacity: 0.05; }
-          10% { opacity: 0.25; }
-        }
-
-        /* Animazione 2: Movimento e dissolvenza */
-        @keyframes move-and-fade {
-            0%, 100% { opacity: 0; transform: translateX(0); }
-            3% { opacity: 0.2; transform: translateX(-15px); }
-            8% { opacity: 0.3; transform: translateX(10px); }
-            15% { opacity: 0; transform: translateX(0); }
-        }
-
-        /* Contenitore principale dell'SVG */
-      /* NUOVO CODICE - Graffi più visibili e spessi */
-        @keyframes flicker {
-          0%, 12%, 100% { opacity: 0; }
-          1% { opacity: 0.6; } /* Aumentato */
-          3% { opacity: 0.4; } /* Aumentato */
-          5% { opacity: 0.7; } /* Aumentato */
-          7% { opacity: 0.2; } /* Aumentato */
-          10% { opacity: 0.5; } /* Aumentato */
+          1% { opacity: 0.6; }
+          3% { opacity: 0.4; }
+          5% { opacity: 0.7; }
+          7% { opacity: 0.2; }
+          10% { opacity: 0.5; }
         }
 
         @keyframes move-and-fade {
             0%, 100% { opacity: 0; transform: translateX(0); }
-            3% { opacity: 0.5; transform: translateX(-15px); } /* Aumentato */
-            8% { opacity: 0.6; transform: translateX(10px); } /* Aumentato */
+            3% { opacity: 0.5; transform: translateX(-15px); }
+            8% { opacity: 0.6; transform: translateX(10px); }
             15% { opacity: 0; transform: translateX(0); }
         }
 
@@ -126,143 +114,54 @@
 
         .scratch-line {
             fill: none;
-            stroke: rgba(232, 225, 215, 0.65); /* Opacità aumentata da 0.35 a 0.65 */
-            stroke-width: 1.5px; /* Spessore base aumentato da 1px a 1.5px */
-            opacity: 0; 
+            stroke: rgba(232, 225, 215, 0.65);
+            stroke-width: 1.5px;
+            opacity: 0;
+            
+            /* OTTIMIZZAZIONE: Indichiamo al browser che le proprietà 'transform' e 'opacity'
+               saranno animate. Questo è fondamentale per animazioni complesse e multiple. */
+            will-change: transform, opacity;
         }
 
         .s1 { animation: flicker 13s infinite -8s; }
-        .s2 { animation: flicker 8s infinite -2s; stroke-width: 1px; } /* Aumentato */
+        .s2 { animation: flicker 8s infinite -2s; stroke-width: 1px; }
         .s3 { animation: move-and-fade 10s infinite -5s; }
-        .s4 { animation: flicker 15s infinite -11s; stroke-width: 2.5px; } /* Aumentato notevolmente */
+        .s4 { animation: flicker 15s infinite -11s; stroke-width: 2.5px; }
         .s5 { animation: move-and-fade 7s infinite -1s; }
-        .s6 { animation: flicker 12s infinite -3s; stroke-width: 1px; } /* Aumentato */
+        .s6 { animation: flicker 12s infinite -3s; stroke-width: 1px; }
         .s7 { animation: flicker 9s infinite -6s; }
-        .s8 { animation: move-and-fade 11s infinite -9s; stroke-width: 2px; } /* Aumentato */
+        .s8 { animation: move-and-fade 11s infinite -9s; stroke-width: 2px; }
         .s9 { animation: flicker 14s infinite -4s; }
-
 
         a {
             color: var(--text-color);
             text-decoration: none;
             font-weight: bold;
         }
-
+        
         /* ... [RESTO DEL CSS, IDENTICO A PRIMA] ... */
         /* ========================================
-           STILI SPECIFICI DELLA HOME PAGE
-           ======================================== */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 5%;
-            position: relative;
-        }
-
-        .hero-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-
-        .hero-logo {
-            width: 100%;
-            max-width: 700px;
-            height: auto;
-            display: block;
-        }
-
-        .tagline {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            margin-top: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--second-text-color);
-        }
-
-        .hero-buttons {
-            margin-top: 3rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .hero-button {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            min-width: 280px;
-            border: 2px solid var(--text-color);
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .hero-button.primary {
-            background-color: var(--text-color);
-            color: #23140C; /* Colore scuro per il testo */
-        }
-        
-        .hero-button.primary:hover {
-            background-color: transparent;
-            color: var(--text-color);
-        }
-
-        .hero-button.secondary {
-            background-color: transparent;
-            color: var(--text-color);
-        }
-
-        .hero-button.secondary:hover {
-            background-color: var(--text-color);
-            color: #23140C;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            color: rgba(232, 225, 215, 0.6);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 4rem 5% 2rem;
-            border-top: 1px solid rgba(208, 186, 152, 0.1);
-        }
-
-        .footer .social-links a {
-            margin: 0 1rem;
-            color: var(--text-color);
-            font-weight: normal;
-        }
-
-        .footer .social-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .footer p {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: rgba(208, 186, 152, 0.5);
-        }
+            STILI SPECIFICI DELLA HOME PAGE
+            ======================================== */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
+        .hero-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; }
+        .hero-logo { width: 100%; max-width: 700px; height: auto; display: block; }
+        .tagline { font-size: clamp(1rem, 2vw, 1.5rem); margin-top: 1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--second-text-color); }
+        .hero-buttons { margin-top: 3rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        .hero-button { display: inline-block; padding: 0.9rem 2rem; min-width: 280px; border: 2px solid var(--text-color); text-transform: uppercase; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; transition: all 0.3s ease; }
+        .hero-button.primary { background-color: var(--text-color); color: #23140C; }
+        .hero-button.primary:hover { background-color: transparent; color: var(--text-color); }
+        .hero-button.secondary { background-color: transparent; color: var(--text-color); }
+        .hero-button.secondary:hover { background-color: var(--text-color); color: #23140C; }
+        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 4px; color: rgba(232, 225, 215, 0.6); }
+        .footer { text-align: center; padding: 4rem 5% 2rem; border-top: 1px solid rgba(208, 186, 152, 0.1); }
+        .footer .social-links a { margin: 0 1rem; color: var(--text-color); font-weight: normal; }
+        .footer .social-links a:hover { color: var(--accent-color); }
+        .footer p { margin-top: 2rem; font-size: 0.9rem; color: rgba(208, 186, 152, 0.5); }
 
         /* ===================================================================
-           CSS DELLA NAVIGAZIONE (DESKTOP E MOBILE)
-           =================================================================== */
+            CSS DELLA NAVIGAZIONE (DESKTOP E MOBILE)
+            =================================================================== */
         .desk-nav {
             position: fixed;
             top: 0;
@@ -278,6 +177,10 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(232, 225, 215, 0.1);
+            
+            /* OTTIMIZZAZIONE: Anche se backdrop-filter è pesante, possiamo suggerire
+               al browser di prepararsi al suo cambiamento. */
+            will-change: backdrop-filter;
         }
         .desk-nav ul { margin: 0; padding: 0; text-align: center; }
         .desk-nav ul li { list-style-type: none; display: inline-block; margin: 20px; font-family: var(--font-body); font-size: 15px; text-transform: uppercase; letter-spacing: 3px; }
@@ -292,7 +195,7 @@
             right: 15px;
             z-index: 1007;
             cursor: pointer;
-            display: none; /* Nascosto di default */
+            display: none;
         }
         .button-container span {
             width: 24px;
@@ -322,6 +225,10 @@
             background-color: rgba(20, 10, 25, 0.8);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
+            
+            /* OTTIMIZZAZIONE: Cruciale per l'overlay che appare e scompare.
+               Il browser sa che opacità e backdrop-filter cambieranno. */
+            will-change: opacity, backdrop-filter;
         }
         .overlay.open { opacity: 1; visibility: visible; }
         .overlay nav { position: relative; height: 70%; top: 50%; transform: translateY(-50%); font-size: 26px; font-family: var(--font-display); text-transform: uppercase; text-align: center; }
@@ -335,11 +242,10 @@
         @media (max-width: 1000px) {
             .desk-nav { display: none; }
             .button-container { display: block; }
-             .hero-logo {
-                 max-width: 90%;
-             }
+            .hero-logo {
+                max-width: 90%;
+            }
         }
-
     </style>
 </head>
 <body>
