@@ -1,242 +1,443 @@
-        /* Stili per le introduzioni */
-        .merch-intro, .projects-intro {
-            text-align: center;
-            padding: 80px 20px 0;
-            color: #ffffff;
-        }
 
-        .merch-intro h2, .projects-intro h2 {
-            font-family: 'Anton', sans-serif;
-            font-size: 3em;
-            text-transform: uppercase;
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
+    :root {
+        --font-display: 'Anton', sans-serif;
+        --font-body: 'Montserrat', sans-serif;
+        --text-color: #e8e1d7;
+        --second-text-color: rgba(232, 225, 215, 0.7);
+    }
 
-        .merch-intro p, .projects-intro p {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1em;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.8;
-            line-height: 1.6;
-        }
+    body {
+        /* Assicurati di avere uno sfondo visibile sul body */
+        background-color: #1a1a1a; /* Esempio */
+        color: var(--text-color);
+    }
 
-        /* --- NUOVA SEZIONE PROGETTI (Design 3.0) --- */
-        .projects-section {
-            padding: 40px 20px 80px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
+    /* Stili per le introduzioni */
+    .merch-intro, .projects-intro {
+        text-align: center;
+        padding: 80px 20px 0;
+    }
 
-        .project-card {
-            width: 100%;
-            max-width: 650px; /* Larghezza massima della card */
-            height: 100px; /* Altezza fissa della card */
-            display: flex;
-            align-items: center;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            font-family: 'Montserrat', sans-serif;
-            color: #fff;
-            padding: 0; /* Rimuove il padding interno */
-            overflow: hidden; /* Necessario per i bordi arrotondati della copertina */
-            transition: background 0.3s ease;
-        }
+    .merch-intro h2, .projects-intro h2 {
+        font-family: 'Anton', sans-serif;
+        font-size: 3em;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
 
-        .project-card:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
+    .merch-intro p, .projects-intro p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1em;
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0.8;
+        line-height: 1.6;
+    }
 
-        .project-cover {
-            width: 100px;
-            height: 100px;
-            flex-shrink: 0; /* Impedisce alla copertina di rimpicciolirsi */
-        }
-        
-        .project-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .project-info {
-            flex-grow: 1;
-            padding: 12px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%; /* Occupa tutta l'altezza */
-        }
+    /* --- SEZIONE PROGETTI --- */
+    .projects-section {
+        padding: 40px 20px 80px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
 
+    .project-card {
+        width: 100%;
+        max-width: 650px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        border-radius: 12px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        font-family: 'Montserrat', sans-serif;
+        color: #fff;
+        padding: 0;
+        overflow: hidden;
+        transition: background 0.3s ease;
+    }
+
+    .project-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .project-cover {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+    }
+    
+    .project-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .project-info {
+        flex-grow: 1;
+        padding: 12px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .track-details h3 {
+        font-size: 1.1em;
+        font-weight: 700;
+        margin: 0;
+    }
+    
+    .track-details p {
+        font-size: 0.9em;
+        opacity: 0.7;
+        margin: 4px 0 0;
+    }
+
+    .progress-bar-container {
+        width: 100%;
+        height: 4px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+        cursor: pointer;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background-color: #fff;
+        border-radius: 2px;
+    }
+    
+    .player-controls {
+         padding-right: 20px;
+    }
+
+    .play-pause-btn {
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        flex-shrink: 0;
+    }
+
+    .play-pause-btn svg {
+        width: 24px;
+        height: 24px;
+        fill: #fff;
+    }
+    
+    @media (max-width: 500px) {
         .track-details h3 {
-            font-size: 1.1em;
-            font-weight: 700;
-            margin: 0;
+            font-size: 1em;
         }
-        
-        .track-details p {
-            font-size: 0.9em;
-            opacity: 0.7;
-            margin: 4px 0 0;
-        }
+         .track-details p {
+            font-size: 0.8em;
+         }
+    }
 
-        .progress-bar-container {
-            width: 100%;
-            height: 4px; /* Spessore della barra */
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            cursor: pointer;
-        }
+    /* --- SEZIONE MERCH --- */
+    .merch-section {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding: 40px 20px 100px 20px;
+        flex-wrap: wrap; 
+    }
 
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background-color: #fff;
-            border-radius: 2px;
-        }
-        
-        .player-controls {
-             padding-right: 20px;
-        }
+    .card {
+        width: 340px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, background 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
 
-        .play-pause-btn {
-            width: 44px; /* Dimensione del cerchio */
-            height: 44px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
+    .card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .product-info { 
+        padding: 25px; 
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .product-info h2 { 
+        font-size: 1.8em; 
+        font-weight: 700; 
+        line-height: 1.2; 
+        margin-bottom: 8px; 
+    }
+    
+    .product-info .description { 
+        font-size: 0.95em; 
+        opacity: 0.8; 
+        margin-bottom: 20px; 
+        line-height: 1.6;
+    }
+    
+    .buy-action { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        margin-top: auto;
+    }
+    
+    .price { 
+        font-size: 1.5em; 
+        font-weight: 700; 
+    }
+
+    .buy-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+    }
+
+    .buy-button:hover { background: rgba(255, 255, 255, 0.3); }
+    .buy-button svg { width: 20px; height: 20px; }
+
+    @media (max-width: 768px) {
+        .merch-section {
+            justify-content: flex-start;
+            padding-left: 20px;
+            padding-right: 20px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory; 
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .merch-section::-webkit-scrollbar {
+            display: none;
+        }
+        .card {
+            scroll-snap-align: start;
             flex-shrink: 0;
         }
+    }
 
-        .play-pause-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: #fff;
-        }
-        
-        @media (max-width: 500px) {
-            .track-details h3 {
-               font-size: 1em;
-            }
-             .track-details p {
-               font-size: 0.8em;
-            }
-        }
-        /* --- FINE SEZIONE PROGETTI --- */
+    /* --- SEZIONE TEAM --- */
+    .section-intro {
+        text-align: center;
+        padding: 100px 20px 40px;
+    }
 
+    .section-intro h2 {
+        font-family: var(--font-display);
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
 
-        .merch-section {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 40px 20px 100px 20px;
-            flex-wrap: wrap; 
+    .section-intro p {
+        font-family: var(--font-body);
+        font-size: 1.1em;
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0.8;
+        line-height: 1.6;
+        color: var(--second-text-color);
+    }
+    
+    .team-section {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding: 0 20px 100px 20px;
+        flex-wrap: wrap;
+    }
+
+    .team-card {
+        width: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: transparent;
+        border: 1px solid rgba(232, 225, 215, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .team-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 25px auto;
+        overflow: hidden;
+        border: 3px solid rgba(232, 225, 215, 0.3);
+    }
+    
+    .team-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    .team-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.8em;
+        color: var(--text-color);
+        margin-bottom: 8px;
+        font-weight: 400;
+        letter-spacing: 1px;
+    }
+
+    .team-card p {
+        font-family: var(--font-body);
+        font-size: 1em;
+        color: var(--second-text-color);
+        line-height: 1.5;
+    }
+
+    /* --- SEZIONE PROSSIMA USCITA --- */
+    #next-release {
+        padding-bottom: 50px;
+    }
+
+    .release-card-horizontal {
+        display: flex;
+        width: 90%;
+        max-width: 800px;
+        margin: 20px auto 0 auto;
+        border-radius: 20px;
+        background: transparent;
+        border: 1px solid rgba(232, 225, 215, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .release-image {
+        flex: 0 0 40%;
+    }
+
+    .release-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .release-content {
+        flex: 1;
+        padding: 40px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .release-content h3 {
+        font-family: var(--font-display);
+        font-size: 2.8em;
+        margin: 0 0 5px 0;
+        font-weight: 400;
+    }
+
+    .release-content .song-title {
+        font-family: var(--font-body);
+        font-size: 1.3em;
+        color: var(--second-text-color);
+        margin: 0 0 30px 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .countdown-timer {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .time-block {
+        text-align: center;
+    }
+
+    .time-number {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 2.5rem;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 10px 15px;
+        border-radius: 10px;
+        min-width: 60px;
+    }
+
+    .time-label {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.7em;
+        text-transform: uppercase;
+        color: var(--second-text-color);
+        margin-top: 10px;
+        letter-spacing: 1px;
+    }
+    
+    .release-date {
+        font-family: var(--font-body);
+        font-size: 1em !important;
+        font-weight: 500;
+        margin: 0;
+    }
+    
+    .final-cta {
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* --- OTTIMIZZAZIONE MOBILE PER COUNTDOWN CARD --- */
+    @media (max-width: 768px) {
+        .release-card-horizontal {
+            flex-direction: column; /* Impila gli elementi verticalmente */
         }
 
-        .card {
-            width: 340px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
+        .release-image {
+            flex-basis: auto; /* Rimuove la base flessibile fissa */
+            width: 100%;     /* L'immagine occupa tutta la larghezza */
+            height: 300px;   /* Altezza fissa per l'immagine su mobile */
         }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-info { 
-            padding: 25px; 
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .product-info h2 { 
-            font-size: 1.8em; 
-            font-weight: 700; 
-            line-height: 1.2; 
-            margin-bottom: 8px; 
-        }
-        
-        .product-info .description { 
-            font-size: 0.95em; 
-            opacity: 0.8; 
-            margin-bottom: 20px; 
-            line-height: 1.6;
-        }
-        
-        .buy-action { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            margin-top: auto;
-        }
-        
-        .price { 
-            font-size: 1.5em; 
-            font-weight: 700; 
-        }
-
-        .buy-button {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-
-        .buy-button:hover { background: rgba(255, 255, 255, 0.3); }
-        .buy-button svg { width: 20px; height: 20px; }
-
-        @media (max-width: 768px) {
-            .merch-section {
-                justify-content: flex-start;
-                padding-left: 20px;
-                padding-right: 20px;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory; 
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-            .merch-section::-webkit-scrollbar {
-                display: none;
-            }
-            .card {
-                scroll-snap-align: start;
-                flex-shrink: 0;
-            }
-        }
+    }

@@ -10,10 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/card.css">
-    <style>
+    <link rel="stylesheet" href="css/card.css">
+   <style>
 
-    </style>
+</style>
+    
 </head>
 <body>
     <svg class="scratches-overlay" preserveAspectRatio="none" viewBox="0 0 1000 1000">
@@ -43,127 +44,198 @@
             </ul>
         </nav>
     </div>
+<main>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <img src="scritta.png" alt="31 LUGLIO STUDIO Logo" class="hero-logo">
+            <p class="tagline">Soundscapes Redefined</p>
+            <div class="hero-buttons">
+                <a href="#merch" class="hero-button primary">Merch →</a>
+                <a href="prenota.html" class="hero-button secondary">Prenota →</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">Scroll</div>
+    </section>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <img src="scritta.png" alt="31 LUGLIO STUDIO Logo" class="hero-logo">
-                <p class="tagline">Soundscapes Redefined</p>
-                <div class="hero-buttons">
-                    <a href="#merch" class="hero-button primary">Merch →</a>
-                    <a href="prenota.html" class="hero-button secondary">Prenota →</a>
+    <section class="section-intro" id="next-release">
+        <h2>PROSSIMA USCITA</h2>
+        <div class="release-card-horizontal">
+            <div class="release-image">
+                <img src="ca.jpg" alt="Foto Artista Shiva">
+            </div>
+            <div class="release-content">
+                <h3>Enrico Garrapa</h3>
+                <p class="song-title">URBAN LEGEND</p>
+                
+                <div class="countdown-timer" id="countdown">
+                    <div class="time-block">
+                        <span class="time-number" id="days">00</span>
+                        <span class="time-label">Giorni</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-number" id="hours">00</span>
+                        <span class="time-label">Ore</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-number" id="minutes">00</span>
+                        <span class="time-label">Minuti</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-number" id="seconds">00</span>
+                        <span class="time-label">Secondi</span>
+                    </div>
+                </div>
+
+                <p class="release-date">5 LUGLIO 2025 • ORE 19:00</p>
+            </div>
+        </div>
+    </section>
+    <section class="projects-intro">
+        <h2>I NOSTRI PROGETTI</h2>
+        <p>Dai un ascolto agli ultimi lavori prodotti, mixati e masterizzati nel nostro studio.</p>
+    </section>
+
+    <section class="projects-section" id="projects">
+        <div class="project-card">
+            <audio class="audio-source" src="notitle.mp3" preload="metadata"></audio>
+            <div class="project-cover">
+                <img src="ca.jpg" alt="Copertina brano">
+            </div>
+            <div class="project-info">
+                 <div class="track-details">
+                    <h3>Enrico Garrapa</h3>
+                    <p>No Title</p>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
                 </div>
             </div>
-            <div class="scroll-indicator">Scroll</div>
-        </section>
-
-        <section class="projects-intro">
-            <h2>I NOSTRI PROGETTI</h2>
-            <p>Dai un ascolto agli ultimi lavori prodotti, mixati e masterizzati nel nostro studio.</p>
-        </section>
-
-        <section class="projects-section" id="projects">
-            <div class="project-card">
-                <audio class="audio-source" src="notitle.mp3" preload="metadata"></audio>
-                
-                <div class="project-cover">
-                    <img src="ca.jpg" alt="Copertina brano">
-                </div>
-                
-                <div class="project-info">
-                     <div class="track-details">
-                        <h3>Enrico Garrapa</h3>
-                        <p>No Title</p>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar"></div>
-                    </div>
-                </div>
-                
-                <div class="player-controls">
-                    <button class="play-pause-btn">
-                        <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                        <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
-                    </button>
-                </div>
+            <div class="player-controls">
+                <button class="play-pause-btn">
+                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                </button>
             </div>
-            
-            <div class="project-card">
-                <audio class="audio-source" src="glitchoflove.mp3" preload="metadata"></audio>
-                <div class="project-cover">
-                    <img src="ca2.jpg" alt="Copertina brano">
-                </div>
-                <div class="project-info">
-                     <div class="track-details">
-                        <h3>Enrico Garrapa</h3>
-                        <p>Glitch of love</p>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar"></div>
-                    </div>
-                </div>
-                <div class="player-controls">
-                    <button class="play-pause-btn">
-                        <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                        <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
-                    </button>
-                </div>
-            </div>
-
-        </section>
-
-
-        <section class="merch-intro">
-            <h2>MERCH ESCLUSIVO</h2>
-            <p>Pezzi unici, nati dalla nostra passione per il suono e il design. Disponibilità limitata.</p>
-        </section>
+        </div>
         
-        <section class="merch-section" id="merch">
-            <div class="card" data-tilt>
-                <div class="product-image"><img src="tshirt2.jpg" alt="Felpa con cappuccio"></div>
-                <div class="product-info">
-                    <h2>T-Shirt</h2>
-                    <p class="description">Edizione limitata con ricamo sul petto e cappuccio felpato. Una descrizione un po' più lunga per dimostrare che la card si adatta.</p>
-                    <div class="buy-action">
-                        <span class="price">€79.90</span>
-                        <a href="#" class="buy-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
-                            <span>Acquista</span>
-                        </a>
-                    </div>
+        <div class="project-card">
+            <audio class="audio-source" src="glitchoflove.mp3" preload="metadata"></audio>
+            <div class="project-cover">
+                <img src="ca2.jpg" alt="Copertina brano">
+            </div>
+            <div class="project-info">
+                 <div class="track-details">
+                    <h3>Enrico Garrapa</h3>
+                    <p>Glitch of love</p>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
                 </div>
             </div>
-            <div class="card" data-tilt>
-                <div class="product-image"><img src="tshirt1.jpg" alt="T-Shirt design"></div>
-                <div class="product-info">
-                    <h2>T-Shirt "Sottosopra"</h2>
-                    <p class="description">T-shirt.</p>
-                    <div class="buy-action">
-                        <span class="price">€34.90</span>
-                        <a href="#" class="buy-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
-                            <span>Acquista</span>
-                        </a>
-                    </div>
-                </div>
+            <div class="player-controls">
+                <button class="play-pause-btn">
+                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                </button>
             </div>
-            <div class="card" data-tilt>
-                <div class="product-image"><img src="tshirt2.jpg" alt="Felpa con cappuccio"></div>
-                <div class="product-info">
-                    <h2>T-Shirt</h2>
-                    <p class="description">Edizione limitata con ricamo sul petto e cappuccio felpato. Una descrizione un po' più lunga per dimostrare che la card si adatta.</p>
-                    <div class="buy-action">
-                        <span class="price">€79.90</span>
-                        <a href="#" class="buy-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
-                            <span>Acquista</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <section class="merch-intro">
+        <h2>MERCH ESCLUSIVO</h2>
+        <p>Pezzi unici, nati dalla nostra passione per il suono e il design. Disponibilità limitata.</p>
+    </section>
+    
+    <section class="merch-section" id="merch">
+        <div class="card" data-tilt>
+            <div class="product-image"><img src="tshirt2.jpg" alt="Felpa con cappuccio"></div>
+            <div class="product-info">
+                <h2>T-Shirt</h2>
+                <p class="description">Edizione limitata con ricamo sul petto e cappuccio felpato. Una descrizione un po' più lunga per dimostrare che la card si adatta.</p>
+                <div class="buy-action">
+                    <span class="price">€79.90</span>
+                    <a href="#" class="buy-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
+                        <span>Acquista</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card" data-tilt>
+            <div class="product-image"><img src="tshirt1.jpg" alt="T-Shirt design"></div>
+            <div class="product-info">
+                <h2>T-Shirt "Sottosopra"</h2>
+                <p class="description">T-shirt.</p>
+                <div class="buy-action">
+                    <span class="price">€34.90</span>
+                    <a href="#" class="buy-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
+                        <span>Acquista</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card" data-tilt>
+            <div class="product-image"><img src="tshirt2.jpg" alt="Felpa con cappuccio"></div>
+            <div class="product-info">
+                <h2>T-Shirt</h2>
+                <p class="description">Edizione limitata con ricamo sul petto e cappuccio felpato. Una descrizione un po' più lunga per dimostrare che la card si adatta.</p>
+                <div class="buy-action">
+                    <span class="price">€79.90</span>
+                    <a href="#" class="buy-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.658-.463 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z" /></svg>
+                        <span>Acquista</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-intro" id="team">
+        <h2>IL NOSTRO TEAM</h2>
+        <p>Siamo un collettivo di creativi, tecnici e visionari uniti dalla stessa ossessione: scolpire il suono perfetto.</p>
+    </section>
+    
+    <section class="team-section">
+        <div class="team-card">
+            <div class="team-photo">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop" alt="Foto membro del team">
+            </div>
+            <h3>MARIO ROSSI</h3>
+            <p>Sound Engineer & Producer</p>
+        </div>
+        <div class="team-card">
+            <div class="team-photo">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop" alt="Foto membro del team">
+            </div>
+            <h3>GIULIA BIANCHI</h3>
+            <p>Mastering Engineer & Art Director</p>
+        </div>
+        <div class="team-card">
+            <div class="team-photo">
+                <img src="https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=300&auto=format&fit=crop" alt="Foto membro del team">
+            </div>
+            <h3>LUCA VERDI</h3>
+            <p>Studio Manager & Booking</p>
+        </div>
+    </section>
+    
+    <section class="section-intro">
+        <h2>📲 Seguici su Instagram</h2>
+        <p>Dai un’occhiata agli ultimi post e resta connesso con tutto quello che succede dentro e fuori allo studio.</p>
+        <div class="final-cta">
+             <a href="#" class="hero-button secondary">Seguici su Instagram →</a>
+        </div>
+    </section>
+    
+    <section class="section-intro">
+        <h2>✈️ Prendi parte</h2>
+        <p>Cerchiamo talenti pronti a brillare.</p>
+        <div class="final-cta">
+             <a href="#" class="hero-button primary">Contattaci →</a>
+        </div>
+    </section>
+</main>
     <footer class="footer">
         <div class="social-links"><a href="#">Instagram</a><a href="#">Spotify</a><a href="#">Soundcloud</a></div>
         <p>&copy; 2025 31 LUGLIO STUDIO. Tutti i diritti riservati.</p>
@@ -173,7 +245,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script src="js/script.js"></script>
 
-       
-    
 </body>
 </html>

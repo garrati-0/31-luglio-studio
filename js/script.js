@@ -86,3 +86,41 @@
                 });
             });
         });
+        
+    // Funzione per il countdown
+    (function () {
+        const countdownElement = document.getElementById('countdown');
+        if (!countdownElement) return;
+
+        // Imposta la data di destinazione (Anno, Mese (0-11), Giorno, Ora, Minuto, Secondo)
+        const targetDate = new Date(2025, 6, 5, 19, 0, 0).getTime();
+
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                countdownElement.innerHTML = "<h3 style='color: var(--text-color); font-family: var(--font-display);'>RILASCIATO!</h3>";
+                clearInterval(interval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            daysEl.innerText = days.toString().padStart(2, '0');
+            hoursEl.innerText = hours.toString().padStart(2, '0');
+            minutesEl.innerText = minutes.toString().padStart(2, '0');
+            secondsEl.innerText = seconds.toString().padStart(2, '0');
+        };
+
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Chiamata iniziale per non aspettare 1 secondo
+    })();
