@@ -1,22 +1,32 @@
+/* ========================================
+   IMPOSTAZIONI GLOBALI E STILI DI BASE
+   ======================================== */
+:root {
+    --second-text-color: rgb(210, 150, 152);
+    --text-color: #E8E1D7;
+    --accent-color: #c4b09d;
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+}
 
-        /* ========================================
-           IMPOSTAZIONI GLOBALI E STILI DI BASE
-           ======================================== */
-        :root {
-            --second-text-color: rgb(210, 150, 152);
-            --text-color: #E8E1D7;
-            --accent-color: #c4b09d;
-            --font-display: 'Anton', sans-serif;
-            --font-body: 'Montserrat', sans-serif;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* ========================================
+   KEYFRAMES CON PREFISSI WEBKIT
+   ======================================== */
 
-        /* Keyframes per l'animazione dello sfondo */
+/* Keyframes per l'animazione dello sfondo */
+@-webkit-keyframes moveGradient {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+    100% { background-position: 0% 50%; }
+}
 @keyframes moveGradient {
     0% { background-position: 0% 50%; }
     25% { background-position: 100% 0%; }
@@ -24,211 +34,268 @@
     75% { background-position: 0% 100%; }
     100% { background-position: 0% 50%; }
 }
-        /* Keyframes per l'animazione della grana */
-        @keyframes grain {
-            0%, 100% { transform: translate(0, 0); }
-            10% { transform: translate(-5%, -10%); }
-            20% { transform: translate(-15%, 5%); }
-            30% { transform: translate(7%, -25%); }
-            40% { transform: translate(-5%, 25%); }
-            50% { transform: translate(-15%, 10%); }
-            60% { transform: translate(15%, 0%); }
-            70% { transform: translate(0%, 15%); }
-            80% { transform: translate(3%, 35%); }
-            90% { transform: translate(-10%, 10%); }
-        }
 
-        body {
-            background: linear-gradient(-45deg, #c800a0, #4f008c, #000000, #4f008c);
-            background-size: 400% 400%;
-            animation: moveGradient 20s ease infinite;
-            color: var(--text-color);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            position: relative; /* Necessario per posizionare gli overlay */
-            will-change: background-position;
-        }
+/* Keyframes per l'animazione della grana */
+@-webkit-keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+}
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+}
 
-        /* Overlay per l'effetto granulare vintage */
-        body::before {
-            content: "";
-            position: fixed;
-            top: -100%;
-            left: -100%;
-            width: 300%;
-            height: 300%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.25' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            opacity: 0.15;
-            z-index: -1;
-            animation: grain 8s steps(10) infinite;
-            pointer-events: none;
-            will-change: transform;
-        }
+/* Keyframes per l'animazione dei graffi */
+@-webkit-keyframes flicker {
+    0%, 12%, 100% { opacity: 0; }
+    1% { opacity: 0.6; }
+    3% { opacity: 0.4; }
+    5% { opacity: 0.7; }
+    7% { opacity: 0.2; }
+    10% { opacity: 0.5; }
+}
+@keyframes flicker {
+    0%, 12%, 100% { opacity: 0; }
+    1% { opacity: 0.6; }
+    3% { opacity: 0.4; }
+    5% { opacity: 0.7; }
+    7% { opacity: 0.2; }
+    10% { opacity: 0.5; }
+}
 
-        /* ==========================================================
-           STILI PER GRAFFI CAOTICI E VARI (SVG)
-           ========================================================== */
-        @keyframes flicker {
-            0%, 12%, 100% { opacity: 0; }
-            1% { opacity: 0.6; }
-            3% { opacity: 0.4; }
-            5% { opacity: 0.7; }
-            7% { opacity: 0.2; }
-            10% { opacity: 0.5; }
-        }
+@-webkit-keyframes move-and-fade {
+    0%, 100% { opacity: 0; transform: translateX(0); }
+    3% { opacity: 0.5; transform: translateX(-15px); }
+    8% { opacity: 0.6; transform: translateX(10px); }
+    15% { opacity: 0; transform: translateX(0); }
+}
+@keyframes move-and-fade {
+    0%, 100% { opacity: 0; transform: translateX(0); }
+    3% { opacity: 0.5; transform: translateX(-15px); }
+    8% { opacity: 0.6; transform: translateX(10px); }
+    15% { opacity: 0; transform: translateX(0); }
+}
 
-        @keyframes move-and-fade {
-            0%, 100% { opacity: 0; transform: translateX(0); }
-            3% { opacity: 0.5; transform: translateX(-15px); }
-            8% { opacity: 0.6; transform: translateX(10px); }
-            15% { opacity: 0; transform: translateX(0); }
-        }
+/* ========================================
+   STILE DEL BODY OTTIMIZZATO
+   ======================================== */
+body {
+    /* Proprietà dello sfondo separate per massima compatibilità */
+    background-color: #4f008c;
+    background-image: linear-gradient(-45deg, #c800a0, #4f008c, #000000, #4f008c);
+    background-size: 400% 400%;
+    background-position: center center;
+    background-attachment: fixed; /* Cruciale per iOS */
 
-        .scratches-overlay {
-            position: fixed;
-            top: -5%;
-            left: -5%;
-            width: 110%;
-            height: 110%;
-            z-index: -1;
-            pointer-events: none;
-        }
+    /* Animazione con prefisso per Safari */
+    -webkit-animation: moveGradient 20s ease infinite;
+    animation: moveGradient 20s ease infinite;
 
-        .scratch-line {
-            fill: none;
-            stroke: rgba(232, 225, 215, 0.65);
-            stroke-width: 1.5px;
-            opacity: 0;
-            will-change: transform, opacity;
-        }
+    color: var(--text-color);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    position: relative;
+    will-change: background-position;
+}
 
-        .s1 { animation: flicker 13s infinite -8s; }
-        .s2 { animation: flicker 8s infinite -2s; stroke-width: 1px; }
-        .s3 { animation: move-and-fade 10s infinite -5s; }
-        .s4 { animation: flicker 15s infinite -11s; stroke-width: 2.5px; }
-        .s5 { animation: move-and-fade 7s infinite -1s; }
-        .s6 { animation: flicker 12s infinite -3s; stroke-width: 1px; }
-        .s7 { animation: flicker 9s infinite -6s; }
-        .s8 { animation: move-and-fade 11s infinite -9s; stroke-width: 2px; }
-        .s9 { animation: flicker 14s infinite -4s; }
+/* ========================================
+   OVERLAYS
+   ======================================== */
 
-        a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* ========================================
-           STILI SPECIFICI DELLA HOME PAGE
-           ======================================== */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
-        .hero-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; }
-        .hero-logo { width: 100%; max-width: 700px; height: auto; display: block; }
-        .tagline { font-size: clamp(1rem, 2vw, 1.5rem); margin-top: 1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--second-text-color); }
-        .hero-buttons { margin-top: 3rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-        .hero-button { display: inline-block; padding: 0.9rem 2rem; min-width: 280px; border: 2px solid var(--text-color); text-transform: uppercase; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; transition: all 0.3s ease; }
-        .hero-button.primary { background-color: var(--text-color); color: #23140C; }
-        .hero-button.primary:hover { background-color: transparent; color: var(--text-color); }
-        .hero-button.secondary { background-color: transparent; color: var(--text-color); }
-        .hero-button.secondary:hover { background-color: var(--text-color); color: #23140C; }
-        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 4px; color: rgba(232, 225, 215, 0.6); }
-        .footer { text-align: center; padding: 4rem 5% 2rem; border-top: 1px solid rgba(208, 186, 152, 0.1); }
-        .footer .social-links a { margin: 0 1rem; color: var(--text-color); font-weight: normal; }
-        .footer .social-links a:hover { color: var(--accent-color); }
-        .footer p { margin-top: 2rem; font-size: 0.9rem; color: rgba(208, 186, 152, 0.5); }
-
-        /* ===================================================================
-           CSS DELLA NAVIGAZIONE (DESKTOP E MOBILE)
-           =================================================================== */
-        .desk-nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: transparent;
-            transition: background-color 0.4s ease, border-color 0.4s ease;
-            padding: 10px 0;
-            border-bottom: 1px solid transparent;
-        }
-        .desk-nav.scrolled {
-            background-color: rgba(20, 10, 25, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(232, 225, 215, 0.1);
-            will-change: backdrop-filter;
-        }
-        .desk-nav ul { margin: 0; padding: 0; text-align: center; }
-        .desk-nav ul li { list-style-type: none; display: inline-block; margin: 20px; font-family: var(--font-body); font-size: 15px; text-transform: uppercase; letter-spacing: 3px; }
-        .desk-nav ul li a { color: var(--text-color); transition: color 0.3s ease; }
-        .desk-nav ul li a:hover { color: var(--second-text-color); }
-
-        .button-container {
-            width: 60px;
-            height: 60px;
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 1007;
-            cursor: pointer;
-            display: none;
-        }
-        .button-container span {
-            width: 24px;
-            height: 2px;
-            background: var(--text-color);
-            position: absolute;
-            left: 18px;
-            transition: all .5s ease;
-        }
-        .button-container span:nth-of-type(1) { top: 26px; }
-        .button-container span:nth-of-type(2) { top: 30px; }
-        .button-container span:nth-of-type(3) { top: 34px; }
-        .button-container.active span:nth-of-type(1) { transform: translate(0, 4px) rotate(45deg); }
-        .button-container.active span:nth-of-type(2) { opacity: 0; }
-        .button-container.active span:nth-of-type(3) { transform: translate(0, -4px) rotate(-45deg); }
-
-        .overlay {
-            position: fixed;
-            visibility: hidden;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            transition: opacity .35s, visibility .35s;
-            z-index: 1002;
-            background-color: rgba(20, 10, 25, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            will-change: opacity, backdrop-filter;
-        }
-        .overlay.open { opacity: 1; visibility: visible; }
-        .overlay nav { position: relative; height: 70%; top: 50%; transform: translateY(-50%); font-size: 26px; font-family: var(--font-display); text-transform: uppercase; text-align: center; }
-        .overlay ul { list-style: none; padding: 0; margin: 0 auto; display: inline-block; position: relative; height: 100%; width: 100%; }
-        .overlay ul li { display: block; height: 25%; min-height: 50px; position: relative; opacity: 0; }
-        .overlay.open ul li { opacity: 1; transition: all .4s ease .1s; }
-        .overlay ul li a { display: block; position: relative; color: var(--text-color); text-decoration: none; }
-        .overlay ul li a:hover { color: var(--second-text-color); }
-
-        /* Media Query per schermi piccoli */
-        @media (max-width: 1000px) {
-            .desk-nav { display: none; }
-            .button-container { display: block; }
-            .hero-logo {
-                max-width: 90%;
-            }
-            
-            /* MODIFICA PER GRANA STATICA SU MOBILE */
-            body::before {
-                animation: none; /* Rimuove l'animazione della grana */
-                will-change: auto; /* Resetta l'ottimizzazione will-change */
-                top: 0; /* Centra l'immagine statica */
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-                
-            }
-        }
+/* Overlay per l'effetto granulare vintage */
+body::before {
+    content: "";
+    position: fixed;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.25' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    opacity: 0.15;
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform;
     
+    -webkit-animation: grain 8s steps(10) infinite;
+    animation: grain 8s steps(10) infinite;
+}
+
+/* Stili per graffi caotici e vari (SVG) */
+.scratches-overlay {
+    position: fixed;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.scratch-line {
+    fill: none;
+    stroke: rgba(232, 225, 215, 0.65);
+    stroke-width: 1.5px;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.s1 { -webkit-animation: flicker 13s infinite -8s; animation: flicker 13s infinite -8s; }
+.s2 { -webkit-animation: flicker 8s infinite -2s; animation: flicker 8s infinite -2s; stroke-width: 1px; }
+.s3 { -webkit-animation: move-and-fade 10s infinite -5s; animation: move-and-fade 10s infinite -5s; }
+.s4 { -webkit-animation: flicker 15s infinite -11s; animation: flicker 15s infinite -11s; stroke-width: 2.5px; }
+.s5 { -webkit-animation: move-and-fade 7s infinite -1s; animation: move-and-fade 7s infinite -1s; }
+.s6 { -webkit-animation: flicker 12s infinite -3s; animation: flicker 12s infinite -3s; stroke-width: 1px; }
+.s7 { -webkit-animation: flicker 9s infinite -6s; animation: flicker 9s infinite -6s; }
+.s8 { -webkit-animation: move-and-fade 11s infinite -9s; animation: move-and-fade 11s infinite -9s; stroke-width: 2px; }
+.s9 { -webkit-animation: flicker 14s infinite -4s; animation: flicker 14s infinite -4s; }
+
+/* ========================================
+   STILI GENERICI E DELLA HOME PAGE
+   ======================================== */
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; }
+.hero-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; }
+.hero-logo { width: 100%; max-width: 700px; height: auto; display: block; }
+.tagline { font-size: clamp(1rem, 2vw, 1.5rem); margin-top: 1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--second-text-color); }
+.hero-buttons { margin-top: 3rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.hero-button { display: inline-block; padding: 0.9rem 2rem; min-width: 280px; border: 2px solid var(--text-color); text-transform: uppercase; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; }
+.hero-button.primary { background-color: var(--text-color); color: #23140C; }
+.hero-button.primary:hover { background-color: transparent; color: var(--text-color); }
+.hero-button.secondary { background-color: transparent; color: var(--text-color); }
+.hero-button.secondary:hover { background-color: var(--text-color); color: #23140C; }
+.scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 4px; color: rgba(232, 225, 215, 0.6); }
+
+.footer { text-align: center; padding: 4rem 5% 2rem; border-top: 1px solid rgba(208, 186, 152, 0.1); }
+.footer .social-links a { margin: 0 1rem; color: var(--text-color); font-weight: normal; }
+.footer .social-links a:hover { color: var(--accent-color); }
+.footer p { margin-top: 2rem; font-size: 0.9rem; color: rgba(208, 186, 152, 0.5); }
+
+/* ===================================================================
+   CSS DELLA NAVIGAZIONE (DESKTOP E MOBILE)
+   =================================================================== */
+.desk-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent;
+    -webkit-transition: background-color 0.4s ease, border-color 0.4s ease;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+    padding: 10px 0;
+    border-bottom: 1px solid transparent;
+}
+
+.desk-nav.scrolled {
+    background-color: rgba(20, 10, 25, 0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(232, 225, 215, 0.1);
+    will-change: backdrop-filter;
+}
+
+.desk-nav ul { margin: 0; padding: 0; text-align: center; }
+.desk-nav ul li { list-style-type: none; display: inline-block; margin: 20px; font-family: var(--font-body); font-size: 15px; text-transform: uppercase; letter-spacing: 3px; }
+.desk-nav ul li a { color: var(--text-color); -webkit-transition: color 0.3s ease; transition: color 0.3s ease; }
+.desk-nav ul li a:hover { color: var(--second-text-color); }
+
+.button-container {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1007;
+    cursor: pointer;
+    display: none;
+}
+
+.button-container span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-color);
+    position: absolute;
+    left: 18px;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.button-container span:nth-of-type(1) { top: 26px; }
+.button-container span:nth-of-type(2) { top: 30px; }
+.button-container span:nth-of-type(3) { top: 34px; }
+.button-container.active span:nth-of-type(1) { transform: translate(0, 4px) rotate(45deg); }
+.button-container.active span:nth-of-type(2) { opacity: 0; }
+.button-container.active span:nth-of-type(3) { transform: translate(0, -4px) rotate(-45deg); }
+
+.overlay {
+    position: fixed;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 1002;
+    background-color: rgba(20, 10, 25, 0.8);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    will-change: opacity, backdrop-filter;
+    -webkit-transition: opacity .35s, visibility .35s;
+    transition: opacity .35s, visibility .35s;
+}
+
+.overlay.open { opacity: 1; visibility: visible; }
+.overlay nav { position: relative; height: 70%; top: 50%; transform: translateY(-50%); font-size: 26px; font-family: var(--font-display); text-transform: uppercase; text-align: center; }
+.overlay ul { list-style: none; padding: 0; margin: 0 auto; display: inline-block; position: relative; height: 100%; width: 100%; }
+.overlay ul li { display: block; height: 25%; min-height: 50px; position: relative; opacity: 0; }
+.overlay.open ul li { opacity: 1; -webkit-transition: all .4s ease .1s; transition: all .4s ease .1s; }
+.overlay ul li a { display: block; position: relative; color: var(--text-color); text-decoration: none; }
+.overlay ul li a:hover { color: var(--second-text-color); }
+
+/* ========================================
+   MEDIA QUERY PER DISPOSITIVI MOBILI
+   ======================================== */
+@media (max-width: 1000px) {
+    .desk-nav { display: none; }
+    .button-container { display: block; }
+    .hero-logo {
+        max-width: 90%;
+    }
+    
+    /* Modifica per grana statica su mobile per migliori performance */
+    body::before {
+        /* Disabilita l'animazione della grana, che consuma CPU */
+        -webkit-animation: none;
+        animation: none;
+        
+        will-change: auto; /* Resetta l'ottimizzazione will-change */
+        top: 0; /* Centra l'immagine statica */
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Usa una grana più fine per la versione statica */
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+}
