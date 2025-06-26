@@ -334,108 +334,141 @@
     <footer class="footer"><div class="social-links"><a href="#">Instagram</a><a href="#">Spotify</a><a href="#">Soundcloud</a></div><p>&copy; 2025 31 LUGLIO STUDIO. Tutti i diritti riservati.</p> <p>sito creato da Enrico Garrapa</p></footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const calendarGrid = document.getElementById('calendar-grid');
+    const weekRangeDisplay = document.getElementById('week-range-display');
+    const dayNamesGrid = document.getElementById('day-names-grid');
+    const prevWeekBtn = document.getElementById('prev-week-btn');
+    const nextWeekBtn = document.getElementById('next-week-btn');
+    const bookingForm = document.getElementById('booking-form');
+    const detailsForm = document.getElementById('details-form');
     
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const calendarGrid = document.getElementById('calendar-grid');
-            const weekRangeDisplay = document.getElementById('week-range-display');
-            const dayNamesGrid = document.getElementById('day-names-grid');
-            const prevWeekBtn = document.getElementById('prev-week-btn');
-            const nextWeekBtn = document.getElementById('next-week-btn');
-            const bookingForm = document.getElementById('booking-form');
-            const detailsForm = document.getElementById('details-form');
-            const selectedDateInput = document.getElementById('selected-date');
-            const selectedTimeInput = document.getElementById('selected-time');
+    // ASSICURATI CHE QUESTO URL SIA CORRETTO!
+    const G_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzuZH0qRkPnsj3sJ28Mgd4csBnI__zBwY5a4bp9p_EitMmxFFaKsR-YhYuYcVzBPool/exec";
 
-            let currentWeekStart = new Date();
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
+    let currentWeekStart = new Date();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-            const monthNames = ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
-            const dayNames = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
-            dayNamesGrid.innerHTML = dayNames.map(name => `<div class="calendar-day-name">${name}</div>`).join('');
+    const monthNames = ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
+    const dayNames = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
+    dayNamesGrid.innerHTML = dayNames.map(name => `<div class="calendar-day-name">${name}</div>`).join('');
+    
+    async function getSlotsForDay(date) {
+        const dayOfWeek = date.getDay();
+        let potentialSlots = [{ time: "10:00", duration: "11:00" }, { time: "11:00", duration: "12:00" }];
+        if (dayOfWeek === 5 || dayOfWeek === 6) {
+            potentialSlots.push({ time: "15:00", duration: "16:00" }, { time: "16:00", duration: "17:00" });
+        }
+        if (date.getDate() === 25 && date.getMonth() === 11) return '';
+
+        const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+        try {
+            const response = await fetch(`${G_SCRIPT_URL}?date=${dateString}`);
+            const data = await response.json();
             
-            function getSlotsForDay(date) {
-                const day = date.getDate();
-                const dayOfWeek = date.getDay();
-                if (day === 25 && date.getMonth() === 11) return '';
-                let slots = [{ time: "10:00", duration: "11:00" }, { time: "11:00", duration: "12:00" }];
-                if(dayOfWeek === 5 || dayOfWeek === 6) {
-                     slots.push({ time: "15:00", duration: "16:00" }, { time: "16:00", duration: "17:00" });
-                }
-                return slots.map(slot => `<div class="time-slot" data-date="${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}" data-time="${slot.time}">${slot.time} - ${slot.duration}</div>`).join('');
+            if (data.result === 'success') {
+                const bookedTimes = data.bookedTimes;
+                const availableSlots = potentialSlots.filter(slot => !bookedTimes.includes(slot.time));
+                
+                if (availableSlots.length === 0) return '<div style="font-size: 0.8rem; text-align: center; color: rgba(255,255,255,0.4); padding-top: 10px;">Completo</div>';
+                return availableSlots.map(slot => `<div class="time-slot" data-date="${dateString}" data-time="${slot.time}">${slot.time} - ${slot.duration}</div>`).join('');
+            } else {
+                return `<div style="color:red;" title="${data.message}">Errore</div>`;
             }
+        } catch (error) {
+            return '<div style="color:red;" title="Errore di rete">Errore</div>';
+        }
+    }
 
-            function renderWeek(startDate) {
-                const dayOfWeek = (startDate.getDay() + 6) % 7;
-                startDate.setDate(startDate.getDate() - dayOfWeek);
-                startDate.setHours(0,0,0,0);
-                
-                calendarGrid.innerHTML = '';
-                const weekEndDate = new Date(startDate);
-                weekEndDate.setDate(startDate.getDate() + 6);
-                
-                weekRangeDisplay.textContent = `${startDate.getDate()} ${monthNames[startDate.getMonth()]} - ${weekEndDate.getDate()} ${monthNames[weekEndDate.getMonth()]} ${weekEndDate.getFullYear()}`;
-                
-                const startOfThisWeek = new Date(today);
-                startOfThisWeek.setDate(startOfThisWeek.getDate() - ((today.getDay() + 6) % 7));
-                prevWeekBtn.disabled = startDate <= startOfThisWeek;
+    async function renderWeek(startDate) {
+        const dayOfWeek = (startDate.getDay() + 6) % 7;
+        startDate.setDate(startDate.getDate() - dayOfWeek);
+        startDate.setHours(0,0,0,0);
+        
+        calendarGrid.innerHTML = '<div style="grid-column: span 7; text-align: center; padding: 40px;">Caricamento...</div>';
+        
+        const weekEndDate = new Date(startDate);
+        weekEndDate.setDate(startDate.getDate() + 6);
+        weekRangeDisplay.textContent = `${startDate.getDate()} ${monthNames[startDate.getMonth()]} - ${weekEndDate.getDate()} ${monthNames[weekEndDate.getMonth()]} ${weekEndDate.getFullYear()}`;
+        
+        const startOfThisWeek = new Date(today);
+        startOfThisWeek.setDate(startOfThisWeek.getDate() - ((today.getDay() + 6) % 7));
+        prevWeekBtn.disabled = startDate <= startOfThisWeek;
 
-                for (let i = 0; i < 7; i++) {
-                    const cellDate = new Date(startDate);
-                    cellDate.setDate(startDate.getDate() + i);
-                    
-                    const cell = document.createElement('div');
-                    cell.className = 'day-cell';
-                    
-                    if (cellDate < today) {
-                        cell.classList.add('is-past-day');
-                        cell.innerHTML = `<div class="day-number">${cellDate.getDate()}</div><div class="time-slots"></div>`;
-                    } else {
-                        if (cellDate.getTime() === today.getTime()) {
-                            cell.classList.add('is-today');
-                        }
-                        cell.innerHTML = `<div class="day-number">${cellDate.getDate()}</div><div class="time-slots">${getSlotsForDay(cellDate)}</div>`;
-                    }
-                    calendarGrid.appendChild(cell);
-                }
+        let cellsHtml = '';
+        for (let i = 0; i < 7; i++) {
+            const cellDate = new Date(startDate);
+            cellDate.setDate(startDate.getDate() + i);
+            
+            let cellClasses = 'day-cell';
+            let slotsHtml = '';
+
+            if (cellDate < today) {
+                cellClasses += ' is-past-day';
+            } else {
+                if (cellDate.getTime() === today.getTime()) cellClasses += ' is-today';
+                slotsHtml = await getSlotsForDay(cellDate); 
             }
+            
+            cellsHtml += `<div class="${cellClasses}"><div class="day-number">${cellDate.getDate()}</div><div class="time-slots">${slotsHtml}</div></div>`;
+        }
+        calendarGrid.innerHTML = cellsHtml;
+    }
 
-            prevWeekBtn.addEventListener('click', () => {
-                currentWeekStart.setDate(currentWeekStart.getDate() - 7);
-                renderWeek(currentWeekStart);
-            });
-            nextWeekBtn.addEventListener('click', () => {
-                currentWeekStart.setDate(currentWeekStart.getDate() + 7);
-                renderWeek(currentWeekStart);
-            });
+    prevWeekBtn.addEventListener('click', () => { currentWeekStart.setDate(currentWeekStart.getDate() - 7); renderWeek(currentWeekStart); });
+    nextWeekBtn.addEventListener('click', () => { currentWeekStart.setDate(currentWeekStart.getDate() + 7); renderWeek(currentWeekStart); });
 
-            calendarGrid.addEventListener('click', (event) => {
-                const slot = event.target.closest('.time-slot');
-                if (slot && !slot.closest('.is-past-day')) {
-                    const currentSelected = document.querySelector('.time-slot.selected');
-                    if (currentSelected) currentSelected.classList.remove('selected');
-                    slot.classList.add('selected');
-                    selectedDateInput.value = slot.dataset.date;
-                    selectedTimeInput.value = slot.dataset.time;
-                    bookingForm.style.display = 'block';
-                    bookingForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            });
+    calendarGrid.addEventListener('click', (event) => {
+        const slot = event.target.closest('.time-slot');
+        if (slot && !slot.closest('.is-past-day')) {
+            const currentSelected = document.querySelector('.time-slot.selected');
+            if (currentSelected) currentSelected.classList.remove('selected');
+            slot.classList.add('selected');
+            // Popoliamo i campi nascosti del form
+            detailsForm.querySelector('#selected-date').value = slot.dataset.date;
+            detailsForm.querySelector('#selected-time').value = slot.dataset.time;
+            bookingForm.style.display = 'block';
+            bookingForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
 
-            detailsForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const formData = new FormData(detailsForm);
-                const data = Object.fromEntries(formData.entries());
-                alert(`Grazie ${data.name}!\n\nHai prenotato per il ${data['selected-date']} alle ore ${data['selected-time']}.\nVerrai ricontattato via email per la conferma definitiva.`);
+    detailsForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const confirmButton = detailsForm.querySelector('.confirm-button');
+        confirmButton.disabled = true;
+        confirmButton.textContent = 'Invio...';
+
+        const formData = new FormData(detailsForm);
+
+        fetch(G_SCRIPT_URL, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.result === 'success') {
+                alert(`Grazie ${formData.get('name')}!\n\nHai prenotato per il ${formData.get('selected-date')} alle ore ${formData.get('selected-time')}.`);
                 detailsForm.reset();
                 bookingForm.style.display = 'none';
-                const currentSelected = document.querySelector('.time-slot.selected');
-                if (currentSelected) currentSelected.classList.remove('selected');
-            });
-
-            renderWeek(new Date());
+                renderWeek(currentWeekStart); 
+            } else {
+                alert('Errore durante la prenotazione: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Errore Fetch:', error);
+            alert('Si è verificato un errore di comunicazione. Controlla la console per i dettagli.');
+        })
+        .finally(() => {
+            confirmButton.disabled = false;
+            confirmButton.textContent = 'Conferma Prenotazione';
         });
-    </script>
+    });
+
+    renderWeek(new Date());
+});
+</script>
 </body>
 </html>
