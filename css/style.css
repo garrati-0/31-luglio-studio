@@ -80,7 +80,7 @@ body::after {
     width: 200%;
     height: 200%;
     /* Utilizzo dei tuoi nuovi colori per il gradiente */
-    background: linear-gradient(-45deg, #000000, #410072, #000000, #5a009e);
+    background: linear-gradient(-45deg, #000000, #2a004b, #000000, #5a009e);
     z-index: -2; /* Posizionato dietro a tutto, incluso la grana */
     pointer-events: none;
     /* Animazione performante sulla proprietà transform */
